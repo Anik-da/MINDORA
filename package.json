@@ -1,0 +1,94 @@
+{
+  "name": "mindora",
+  "productName": "MINDORA",
+  "version": "1.0.0",
+  "description": "MINDORA — Your personal AI. Beyond assistance.",
+  "main": "dist/electron/main.js",
+  "author": "MINDORA",
+  "type": "module",
+  "scripts": {
+    "build": "tsc && node scripts/copy-assets.mjs && node scripts/copy-web-assets.mjs",
+    "build:web": "tsc && node scripts/copy-web-assets.mjs",
+    "build:installer": "npm run build:win",
+    "build:win": "npm run typecheck && npm run build && npm test && npm run test:integration && node scripts/prepare-builder-tools.mjs && set \"ELECTRON_BUILDER_RCEDIT_PATH=node_modules\\.cache\\mindora-builder-tools\" && electron-builder --win nsis --x64 && node scripts/verify-windows-installer.mjs",
+    "dist:win": "npm run build:win",
+    "pack": "npm run build && electron-builder --dir",
+    "start": "electron dist/electron/main.js",
+    "start:web": "node dist/server/server.js",
+    "web": "node dist/server/server.js",
+    "mock-ui": "electron dist/electron/main.js --mock-ui",
+    "coach": "electron dist/electron/main.js --coach",
+    "proof": "electron dist/electron/main.js",
+    "typecheck": "tsc --noEmit",
+    "test": "node scripts/run-unit-tests.mjs",
+    "test:integration": "node --test dist/tests/*.integration.test.js",
+    "review:ui": "electron scripts/capture-ui-review.mjs"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Anik-da/MINDORA.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Anik-da/MINDORA/issues"
+  },
+  "homepage": "https://github.com/Anik-da/MINDORA#readme",
+  "build": {
+    "appId": "com.mindora.desktop",
+    "productName": "MINDORA",
+    "asar": true,
+    "electronDist": "node_modules/electron/dist",
+    "directories": {
+      "output": "release-build"
+    },
+    "files": [
+      "dist/electron/**/*",
+      "dist/shared/**/*",
+      "dist/server/agent/**/*",
+      "dist/server/integrations/tinyfish/**/*",
+      "package.json",
+      "!**/*.ts",
+      "!**/*.map",
+      "!captures/**/*",
+      "!tests/**/*",
+      "!.cache/**/*",
+      "!.env*",
+      "!fixtures/**/*",
+      "!scripts/**/*",
+      "!docs/**/*",
+      "!reference/**/*"
+    ],
+    "win": {
+      "target": [
+        {
+          "target": "nsis",
+          "arch": [
+            "x64"
+          ]
+        }
+      ],
+      "icon": "electron/assets/mindora.ico",
+      "executableName": "MINDORA",
+      "artifactName": "MINDORA-Setup-x64.${ext}",
+      "legalTrademarks": "MINDORA"
+    },
+    "nsis": {
+      "oneClick": false,
+      "perMachine": false,
+      "allowToChangeInstallationDirectory": true,
+      "deleteAppDataOnUninstall": false,
+      "shortcutName": "MINDORA",
+      "uninstallDisplayName": "MINDORA",
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true
+    }
+  },
+  "devDependencies": {
+    "@types/node": "^26.6.4",
+    "electron": "^44.7.0",
+    "electron-builder": "^26.15.3",
+    "typescript": "^7.0.2"
+  },
+  "dependencies": {
+    "tesseract.js": "^7.0.0"
+  }
+}

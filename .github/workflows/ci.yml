@@ -1,0 +1,47 @@
+name: CI Pipeline
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  verify:
+    name: Typecheck, Build & Unit Tests
+    runs-on: windows-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js 22.x
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run TypeScript typecheck
+        run: npm run typecheck
+
+      - name: Build applications and copy assets
+        run: npm run build
+
+      - name: Run unit test suite (122 tests)
+        run: npm test
+
+      - name: Verify repository size budget (< 10 MB)
+        shell: pwsh
+        run: |
+          $repoBytes = git ls-files | ForEach-Object { (Get-Item $_).Length } | Measure-Object -Sum | Select-Object -ExpandProperty Sum
+          $repoMb = [math]::Round($repoBytes / 1MB, 2)
+          Write-Host "Tracked Git Source & Assets Size: $repoMb MB"
+          if ($repoBytes -gt 10485760) {
+            Write-Error "Tracked repository size exceeds 10 MB budget: $repoMb MB"
+            exit 1
+          } else {
+            Write-Host "Repository budget check passed (< 10 MB limit, measured $repoMb MB)."
+          }

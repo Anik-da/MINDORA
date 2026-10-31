@@ -1,0 +1,88 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 220 220" fill="none">
+  <defs>
+    <linearGradient id="oliver-bronze" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#dfba73"/>
+      <stop offset="50%" stop-color="#b68945"/>
+      <stop offset="100%" stop-color="#7a5420"/>
+    </linearGradient>
+    <linearGradient id="oliver-copper" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#f5d6a2"/>
+      <stop offset="60%" stop-color="#d69b55"/>
+      <stop offset="100%" stop-color="#996025"/>
+    </linearGradient>
+    <linearGradient id="oliver-belly" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#fff8ed"/>
+      <stop offset="100%" stop-color="#eddac0"/>
+    </linearGradient>
+    <radialGradient id="oliver-lens-glow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#ffe082"/>
+      <stop offset="50%" stop-color="#ffb300"/>
+      <stop offset="100%" stop-color="#e65100"/>
+    </radialGradient>
+  </defs>
+
+  <!-- Shadow -->
+  <ellipse cx="110" cy="204" rx="52" ry="8" fill="#543c1c" opacity="0.18"/>
+
+  <!-- Perch Claws / Talons (Articulated Brass) -->
+  <g class="pet-talons">
+    <path d="M82 186v10m8-10v12m8-12v10" stroke="#7a5420" stroke-width="4.5" stroke-linecap="round"/>
+    <path d="M122 186v10m8-10v12m8-12v10" stroke="#7a5420" stroke-width="4.5" stroke-linecap="round"/>
+  </g>
+
+  <!-- Main Body Shell -->
+  <path d="M62 104c0-36 20-64 48-64s48 28 48 64v58c0 18-16 28-48 28s-48-10-48-28v-58z" fill="url(#oliver-copper)" stroke="#593b16" stroke-width="3.5"/>
+
+  <!-- Tiered Mechanical Feather Wings (Articulated) -->
+  <g class="pet-wings">
+    <!-- Left Wing -->
+    <g class="pet-wing-left" style="transform-origin: 66px 110px;">
+      <path d="M66 108c-26 4-38 24-28 46 8 16 26 16 38 2" fill="url(#oliver-bronze)" stroke="#593b16" stroke-width="3.5" stroke-linejoin="round"/>
+      <path d="M48 126c8 10 20 12 28 2" stroke="#593b16" stroke-width="2"/>
+    </g>
+    <!-- Right Wing -->
+    <g class="pet-wing-right" style="transform-origin: 154px 110px;">
+      <path d="M154 108c26 4 38 24 28 46-8 16-26 16-38 2" fill="url(#oliver-bronze)" stroke="#593b16" stroke-width="3.5" stroke-linejoin="round"/>
+      <path d="M172 126c-8 10-20 12-28 2" stroke="#593b16" stroke-width="2"/>
+    </g>
+  </g>
+
+  <!-- Cream Porcelain Chest Plate with Articulated Scale Scallops -->
+  <path d="M76 128c3-22 16-34 34-34s31 12 34 34v32c0 14-14 22-34 22s-34-8-34-22v-32z" fill="url(#oliver-belly)" stroke="#8d6837" stroke-width="2"/>
+  <path d="M88 136c7 6 15 8 22 8s15-2 22-8m-38 14c5 5 11 7 16 7s11-2 16-7" stroke="#b68945" stroke-width="2.5" stroke-linecap="round"/>
+
+  <!-- Clockwork Core / Energy Dial in Chest -->
+  <circle cx="110" cy="166" r="6" fill="#3e2723" stroke="#8d6837" stroke-width="1.5"/>
+  <circle cx="110" cy="166" r="2.5" fill="#ffb300"/>
+
+  <!-- Head Crest / Ear Feather Tufts (Articulated Brass Plating) -->
+  <g class="pet-ears">
+    <!-- Left Crest Tuft -->
+    <path d="M66 68L48 30l32 18z" fill="url(#oliver-bronze)" stroke="#593b16" stroke-width="3" stroke-linejoin="round"/>
+    <path d="M58 44l16 10" stroke="#fff8ed" stroke-width="1.8"/>
+    <!-- Right Crest Tuft -->
+    <path d="M154 68l18-38-32 18z" fill="url(#oliver-bronze)" stroke="#593b16" stroke-width="3" stroke-linejoin="round"/>
+    <path d="M162 44l-16 10" stroke="#fff8ed" stroke-width="1.8"/>
+  </g>
+
+  <!-- Optical Goggles Frame / Eye Bezels -->
+  <rect x="70" y="70" width="80" height="42" rx="21" fill="#3e2723" stroke="#593b16" stroke-width="3.5"/>
+  
+  <!-- Dual Optical Zoom Lenses -->
+  <circle cx="90" cy="91" r="17" fill="url(#oliver-lens-glow)" stroke="#b68945" stroke-width="2.5"/>
+  <circle cx="130" cy="91" r="17" fill="url(#oliver-lens-glow)" stroke="#b68945" stroke-width="2.5"/>
+
+  <!-- Lens Iris & Pupil Apertures -->
+  <circle cx="90" cy="91" r="8" fill="#1b120c"/>
+  <circle cx="130" cy="91" r="8" fill="#1b120c"/>
+  <circle cx="93" cy="88" r="3" fill="#ffffff"/>
+  <circle cx="133" cy="88" r="3" fill="#ffffff"/>
+
+  <!-- Optical Calibrator Marks -->
+  <circle cx="90" cy="91" r="14" fill="none" stroke="#ffe082" stroke-width="1" stroke-dasharray="2 3" opacity="0.7"/>
+  <circle cx="130" cy="91" r="14" fill="none" stroke="#ffe082" stroke-width="1" stroke-dasharray="2 3" opacity="0.7"/>
+
+  <!-- Mechanical Brass Beak -->
+  <polygon points="110,98 102,110 110,118 118,110" fill="url(#oliver-bronze)" stroke="#593b16" stroke-width="2.2" stroke-linejoin="round"/>
+  <line x1="110" y1="98" x2="110" y2="118" stroke="#ffe082" stroke-width="1.2"/>
+</svg>

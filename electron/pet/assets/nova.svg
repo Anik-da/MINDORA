@@ -1,0 +1,87 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 220 220" fill="none">
+  <defs>
+    <radialGradient id="nova-glow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#72d8f0" stop-opacity="0.45"/>
+      <stop offset="100%" stop-color="#72d8f0" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="nova-hull" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#f5f9fc"/>
+      <stop offset="50%" stop-color="#d4e4ec"/>
+      <stop offset="100%" stop-color="#a4bcc8"/>
+    </linearGradient>
+    <linearGradient id="nova-visor" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#192834"/>
+      <stop offset="100%" stop-color="#0c1720"/>
+    </linearGradient>
+    <linearGradient id="nova-gold" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ffd56b"/>
+      <stop offset="100%" stop-color="#e29b28"/>
+    </linearGradient>
+    <radialGradient id="nova-core-glow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#c1f6ff"/>
+      <stop offset="60%" stop-color="#3dd2f0"/>
+      <stop offset="100%" stop-color="#1aa0c2"/>
+    </radialGradient>
+  </defs>
+
+  <!-- Shadow & Thruster Glow -->
+  <ellipse cx="110" cy="204" rx="50" ry="8" fill="#587282" opacity="0.18"/>
+  <ellipse class="pet-thruster-glow" cx="110" cy="192" rx="36" ry="14" fill="url(#nova-glow)"/>
+
+  <!-- Thruster Nozzles -->
+  <g class="pet-thrusters">
+    <path d="M92 176l-4 14h14l-2-14z" fill="#78929e" stroke="#526d7a" stroke-width="2"/>
+    <path d="M120 176l-2 14h14l-4-14z" fill="#78929e" stroke="#526d7a" stroke-width="2"/>
+    <ellipse cx="93" cy="191" rx="5" ry="3" fill="#6fe5ff"/>
+    <ellipse cx="127" cy="191" rx="5" ry="3" fill="#6fe5ff"/>
+  </g>
+
+  <!-- Floating Body Shell -->
+  <rect x="66" y="86" width="88" height="92" rx="38" fill="url(#nova-hull)" stroke="#587382" stroke-width="3.5"/>
+  <path d="M78 126h64" stroke="#8da7b5" stroke-width="2" stroke-dasharray="3 3"/>
+
+  <!-- Chest Arc Reactor -->
+  <circle cx="110" cy="144" r="14" fill="#1b2a34" stroke="#587382" stroke-width="2.5"/>
+  <circle class="pet-core" cx="110" cy="144" r="9" fill="url(#nova-core-glow)"/>
+  <circle cx="110" cy="144" r="4" fill="#ffffff" opacity="0.9"/>
+
+  <!-- Left & Right Articulated Thruster Fins / Pods -->
+  <rect x="42" y="106" width="22" height="42" rx="10" fill="url(#nova-hull)" stroke="#587382" stroke-width="3"/>
+  <circle cx="53" cy="127" r="4" fill="url(#nova-gold)"/>
+  <rect x="156" y="106" width="22" height="42" rx="10" fill="url(#nova-hull)" stroke="#587382" stroke-width="3"/>
+  <circle cx="167" cy="127" r="4" fill="url(#nova-gold)"/>
+
+  <!-- Head Dome -->
+  <path d="M72 88c0-25 17-46 38-46s38 21 38 46v6H72v-6z" fill="url(#nova-hull)" stroke="#587382" stroke-width="3.5"/>
+  
+  <!-- Dual Antennae -->
+  <path d="M92 44l-8-16m36 16l8-16" stroke="#587382" stroke-width="3.5" stroke-linecap="round"/>
+  <circle class="pet-beacon" cx="82" cy="26" r="6" fill="url(#nova-gold)"/>
+  <circle class="pet-beacon" cx="138" cy="26" r="6" fill="url(#nova-gold)"/>
+  <circle cx="82" cy="26" r="2.5" fill="#ffffff"/>
+  <circle cx="138" cy="26" r="2.5" fill="#ffffff"/>
+
+  <!-- Curved Visor Screen -->
+  <rect x="80" y="60" width="60" height="28" rx="14" fill="url(#nova-visor)" stroke="#39505d" stroke-width="2"/>
+  
+  <!-- Visor Reflection Highlight -->
+  <path d="M86 65c8-3 18-3 26-3" stroke="#486878" stroke-width="2" stroke-linecap="round"/>
+
+  <!-- Cyan LED Eyes (Expressive) -->
+  <g class="pet-eyes">
+    <ellipse cx="98" cy="74" rx="5.5" ry="6.5" fill="#6de8ff"/>
+    <ellipse cx="122" cy="74" rx="5.5" ry="6.5" fill="#6de8ff"/>
+    <circle cx="96" cy="72" r="2" fill="#ffffff"/>
+    <circle cx="120" cy="72" r="2" fill="#ffffff"/>
+  </g>
+
+  <!-- Golden Orbiting Ring & Satellite -->
+  <g class="pet-orbit" style="transform-origin: 110px 110px;">
+    <ellipse cx="110" cy="110" rx="92" ry="26" fill="none" stroke="url(#nova-gold)" stroke-width="2.2" stroke-dasharray="8 6" opacity="0.8" transform="rotate(-18 110 110)"/>
+    <g transform="translate(196, 78)">
+      <circle cx="0" cy="0" r="8" fill="url(#nova-gold)"/>
+      <circle cx="0" cy="0" r="3" fill="#ffffff"/>
+      <circle cx="0" cy="0" r="11" fill="none" stroke="#ffd56b" stroke-width="1.5" opacity="0.6"/>
+    </g>
+  </g>
+</svg>

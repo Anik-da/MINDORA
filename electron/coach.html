@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MINDORA Coach</title>
+  <link rel="stylesheet" href="./coach.css">
+</head>
+<body>
+  <div class="coach-panel" id="coach-panel">
+    <!-- Draggable Header -->
+    <header class="panel-header" id="panel-header">
+      <div class="brand-section">
+        <div class="companion-avatar" aria-hidden="true">
+          <img src="./assets/mindora.png" alt="MINDORA companion" class="companion-avatar-img"/>
+        </div>
+        <span class="panel-title">MINDORA Coach</span>
+      </div>
+      <div class="header-actions">
+        <span class="status-badge" id="status-badge">Ready</span>
+      </div>
+    </header>
+
+    <!-- Developer Mock QA Bar (Visible only in --mock-ui mode) -->
+    <div class="mock-bar" id="mock-bar">
+      <span>Mock QA:</span>
+      <select class="mock-select" id="mock-state-select" aria-label="Select Mock State">
+        <option value="ready">1. ready</option>
+        <option value="capturing">2. capturing</option>
+        <option value="analysing">3. analysing</option>
+        <option value="guidance" selected>4. guidance</option>
+        <option value="recovery">5. recovery</option>
+        <option value="paused">6. paused</option>
+        <option value="complete">7. complete</option>
+        <option value="error">8. error</option>
+        <option value="text-only">9. text-only</option>
+      </select>
+    </div>
+
+    <!-- Scrollable Content Body -->
+    <main class="panel-body panel-scroll-content" id="panel-scroll-content">
+      <!-- Goal Summary Chip -->
+      <div class="goal-context">
+        <div class="goal-dot" aria-hidden="true"></div>
+        <span class="goal-label" id="goal-label">Requests by department</span>
+      </div>
+
+      <!-- Busy Indicator (active strictly when analyzing/capturing) -->
+      <div class="busy-box" id="busy-box" aria-live="polite">
+        <div class="busy-spinner" aria-hidden="true"></div>
+        <span id="busy-label">Reading your screen…</span>
+      </div>
+
+      <!-- Dominant Next Move Instruction -->
+      <div class="instruction-box" id="instruction-box">
+        <div class="instruction-header-row">
+        <h2 class="instruction-text" id="instruction-text">Describe a task. MINDORA will inspect the active application before guiding you.</h2>
+          <button 
+            type="button" 
+            class="btn-tts" 
+            id="btn-tts" 
+            aria-label="Read instruction aloud" 
+            title="Read instruction aloud"
+            aria-pressed="false"
+          >
+            <svg class="tts-icon-speaker" width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+              <path d="M7.5 2.5L3.5 6H1.5C1.22 6 1 6.22 1 6.5V9.5C1 9.78 1.22 10 1.5 10H3.5L7.5 13.5C7.8 13.76 8.25 13.55 8.25 13.15V2.85C8.25 2.45 7.8 2.24 7.5 2.5Z" fill="currentColor"/>
+              <path d="M11 5.5C11.8 6.3 12.3 7.4 12.3 8.6C12.3 9.8 11.8 10.9 11 11.7" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/>
+              <path d="M13 3.5C14.3 4.8 15 6.6 15 8.6C15 10.6 14.3 12.4 13 13.7" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/>
+            </svg>
+            <svg class="tts-icon-stop" width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true" style="display: none;">
+              <rect x="3.5" y="3.5" width="9" height="9" rx="2" fill="currentColor"/>
+            </svg>
+          </button>
+        </div>
+        <div class="tts-notice" id="tts-notice" role="status" aria-live="polite" style="display: none;"></div>
+      </div>
+
+      <!-- Recovery Notice Box (active in recovery state) -->
+      <div class="recovery-box" id="recovery-box">
+        <div class="recovery-tag">Correction</div>
+        <div class="recovery-body">
+          <span id="recovery-text">MINDORA will recheck the visible application before suggesting a correction.</span>
+        </div>
+      </div>
+
+      <!-- What I Noticed Observation -->
+      <div class="observation-box" id="observation-box">
+        <div class="observation-header">
+          <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true">
+            <circle cx="6" cy="6" r="4.5" stroke="currentColor" stroke-width="1.3"/>
+            <path d="M6 4v2.5M6 8.5h.01" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/>
+          </svg>
+          <span>What I noticed</span>
+        </div>
+        <p class="observation-text" id="observation-text">Data range A1:B5 is selected. The top menu bar is visible.</p>
+      </div>
+    </main>
+
+    <!-- Fixed Action Controls Area -->
+    <div class="controls-container">
+      <div class="controls-row">
+        <button class="btn-check" id="btn-check">
+          <span>Check my progress</span>
+        </button>
+        <button class="btn-sec" id="btn-pause">Pause</button>
+        <button class="btn-sec" id="btn-stop">Stop</button>
+      </div>
+    </div>
+
+    <!-- Footer Telemetry -->
+    <footer class="panel-footer">
+      <span class="shortcut-hint">Ctrl+Alt+U</span>
+      <span class="budget-chip" id="budget-chip">15 checks left</span>
+    </footer>
+  </div>
+
+  <script type="module" src="./coach.js"></script>
+</body>
+</html>

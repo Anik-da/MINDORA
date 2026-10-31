@@ -1,0 +1,77 @@
+/* MINDORA - Approved Pastel Design Tokens (ChatGPT & Akash Visual Specification) */
+
+:root {
+  /* Surface Palettes */
+  --color-bg: #FAF6EF;
+  --color-surface: #FFFCF7;
+  --color-surface-pure: #FFFFFF;
+  --color-surface-muted: #F4EFE6;
+  
+  /* Brand Pastel Hues */
+  --color-lavender: #DDD3FA;
+  --color-lavender-light: #ECE5FC;
+  --color-lavender-soft: #F5F0FE;
+  --color-lavender-deep: #B7A3EB;
+  
+  /* Text & Legibility */
+  --color-ink: #24112F;
+  --color-ink-secondary: #776980;
+  --color-ink-muted: #9E91A6;
+  --color-ink-pill: #422D52;
+  
+  /* Accents & States */
+  --color-coral: #FF795F;
+  --color-coral-hover: #F2674C;
+  --color-coral-soft: #FFF2EF;
+  --color-coral-tint: rgba(255, 121, 95, 0.15);
+  
+  --color-yellow: #FFC443;
+  --color-yellow-light: #FFE08F;
+  --color-yellow-soft: #FFF9E8;
+  
+  --color-success: #2E7D32;
+  --color-success-bg: #E8F5E9;
+  --color-error: #C62828;
+  --color-error-bg: #FFEBEE;
+  --color-warning: #E65100;
+  --color-warning-bg: #FFF3E0;
+
+  /* Borders & Dividers */
+  --color-border: rgba(36, 17, 47, 0.08);
+  --color-border-subtle: rgba(36, 17, 47, 0.04);
+  --color-border-hover: rgba(36, 17, 47, 0.16);
+  --color-border-focus: rgba(221, 211, 250, 0.9);
+
+  /* Typography */
+  --font-heading: 'Manrope', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-body: 'DM Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, Consolas, 'Liberation Mono', Menlo, monospace;
+
+  /* Spacing Scale */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 20px;
+  --space-6: 24px;
+  --space-8: 32px;
+  --space-10: 40px;
+  --space-12: 48px;
+
+  /* Radii */
+  --radius-panel: 36px;
+  --radius-card: 28px;
+  --radius-input: 20px;
+  --radius-control: 16px;
+  --radius-bubble: 22px;
+  --radius-pill: 9999px;
+
+  /* Shadows */
+  --shadow-subtle: 0 4px 16px rgba(36, 17, 47, 0.04);
+  --shadow-panel: 0 16px 40px -12px rgba(36, 17, 47, 0.06), 0 4px 14px rgba(36, 17, 47, 0.02);
+  --shadow-bubble: 0 8px 24px -4px rgba(36, 17, 47, 0.08);
+  --shadow-card: 0 10px 30px rgba(36, 17, 47, 0.04);
+  --shadow-coach: 0 20px 48px -10px rgba(36, 17, 47, 0.12), 0 6px 18px rgba(36, 17, 47, 0.04);
+  --shadow-button: 0 8px 20px -4px rgba(255, 121, 95, 0.38);
+  --shadow-focus: 0 0 0 3px rgba(221, 211, 250, 0.5);
+}

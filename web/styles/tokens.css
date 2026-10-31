@@ -1,0 +1,69 @@
+/* MINDORA Web - Approved Design Tokens (ChatGPT & Akash Specification) */
+
+:root {
+  /* Midnight Navy Stage & MINDORA companion Palette (Final Approved Direction) */
+  --color-canvas: #F7F5F0;
+  --color-canvas-subtle: #F0EEE8;
+  --color-canvas-card: #FFFEFB;
+  --color-canvas-card-elevated: #FFFFFF;
+  --color-warm-paper: #F7F5F0;
+  --color-paper-card: #FFFEFB;
+  --color-paper-elevated: #EFEBE3;
+  
+  /* Text & Legibility */
+  --color-text-dark: #292824;
+  --color-text-secondary: #77756E;
+  --color-text-on-dark: #292824;
+  --color-text-on-dark-muted: #77756E;
+  --color-text-pearl: #292824;
+  --color-text-moss-button: #292824;
+  
+  /* Accents & States */
+  --color-blue-accent: #C96A43;
+  --color-blue-accent-glow: rgba(201, 106, 67, 0.16);
+  --color-amber-accent: #C96A43;
+  --color-amber-accent-soft: rgba(201, 106, 67, 0.09);
+  --color-amber-accent-border: #D98D6D;
+  --color-moss: #C96A43;
+  --color-moss-light: #DC9878;
+  --color-moss-dark: #B85B36;
+  --color-clay: #C96A43;
+  --color-clay-soft: rgba(201, 106, 67, 0.08);
+  --color-clay-border: #D98D6D;
+  --color-error-text: #A7433B;
+  --color-error-bg: #F8E9E6;
+
+  /* Borders & Dividers */
+  --color-border-fine: #DCD8CD;
+  --color-border-dark: #E2DED5;
+  --color-border-dark-subtle: #EAE7E0;
+
+  /* Typography */
+  --font-heading: 'Manrope', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-body: 'DM Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, Consolas, 'Liberation Mono', Menlo, monospace;
+
+  /* Spacing Scale */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-6: 24px;
+  --space-8: 32px;
+  --space-10: 40px;
+  --space-12: 48px;
+  --space-16: 64px;
+
+  /* Radii */
+  --radius-sm: 8px;
+  --radius-control: 11px;
+  --radius-card: 20px;
+  --radius-canvas: 24px;
+  --radius-pill: 9999px;
+
+  /* Shadows */
+  --shadow-card: 0 10px 28px -14px rgba(41, 40, 36, 0.14), 0 2px 8px rgba(41, 40, 36, 0.035);
+  --shadow-active-panel: 0 14px 34px -16px rgba(41, 40, 36, 0.14), 0 4px 12px rgba(41, 40, 36, 0.06);
+  --shadow-glow-moss: 0 0 0 2px rgba(166, 182, 143, 0.35);
+  --shadow-glow-clay: 0 0 0 2px rgba(213, 139, 100, 0.4);
+}

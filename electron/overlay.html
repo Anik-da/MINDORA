@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'unsafe-inline'; script-src 'unsafe-inline';">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MINDORA Overlay</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html, body {
+      width: 100vw;
+      height: 100vh;
+      background: transparent !important;
+      overflow: hidden;
+      pointer-events: none;
+      user-select: none;
+      -webkit-user-select: none;
+    }
+
+    #target-outline {
+      position: absolute;
+      display: none;
+      pointer-events: none;
+      /* Approved Moss outline with dark contrast boundary */
+      border: 2.5px solid #A6B68F;
+      border-radius: 6px;
+      background: rgba(166, 182, 143, 0.12);
+      box-shadow: 0 0 0 1.5px rgba(23, 33, 27, 0.85), 0 4px 16px rgba(166, 182, 143, 0.35);
+      z-index: 999999;
+    }
+
+    #target-badge {
+      position: absolute;
+      top: -26px;
+      left: 0;
+      font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      font-size: 11.5px;
+      font-weight: 600;
+      color: #F4F1E8;
+      background: #17211B;
+      border: 1px solid #A6B68F;
+      border-radius: 4px;
+      padding: 2px 7px;
+      white-space: nowrap;
+      pointer-events: none;
+      letter-spacing: 0.01em;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.4);
+    }
+  </style>
+</head>
+<body>
+  <div id="target-outline">
+    <div id="target-badge"></div>
+  </div>
+
+  <script>
+    (function () {
+      const outlineEl = document.getElementById('target-outline');
+      const badgeEl = document.getElementById('target-badge');
+      let expireTimer = null;
+      const PADDING = 4;
+
+      window.onerror = function (msg, url, line, col, error) {
+        if (window.mindoraOverlay && window.mindoraOverlay.reportError) {
+          window.mindoraOverlay.reportError({ msg, url, line, col, error: String(error) });
+        }
+      };
+
+      function clearOutline() {
+        if (expireTimer) {
+          clearTimeout(expireTimer);
+          expireTimer = null;
+        }
+        outlineEl.style.display = 'none';
+      }
+
+      function showOutline(data) {
+        if (!data || !data.rect) return;
+        clearOutline();
+
+        const { x, y, width, height } = data.rect;
+        const label = data.label || '';
+        const isTest = Boolean(data.isTest);
+        const autoExpireMs = typeof data.autoExpireMs === 'number' ? data.autoExpireMs : 8000;
+
+        // Apply padding around detected word (none for synthetic test box)
+        const pad = isTest ? 0 : PADDING;
+        const paddedX = Math.max(0, x - pad);
+        const paddedY = Math.max(0, y - pad);
+        const paddedWidth = width + (pad * 2);
+        const paddedHeight = height + (pad * 2);
+
+        outlineEl.style.left = paddedX + 'px';
+        outlineEl.style.top = paddedY + 'px';
+        outlineEl.style.width = paddedWidth + 'px';
+        outlineEl.style.height = paddedHeight + 'px';
+        outlineEl.style.display = 'block';
+
+        badgeEl.textContent = label ? (isTest ? `[TEST RECTANGLE] ${label}` : `Target: ${label}`) : '';
+        badgeEl.style.display = label ? 'block' : 'none';
+
+        // Read computed DOM geometry to send structured telemetry acknowledgement
+        if (window.mindoraOverlay && window.mindoraOverlay.sendAck) {
+          const domRect = outlineEl.getBoundingClientRect();
+          const computed = window.getComputedStyle(outlineEl);
+          window.mindoraOverlay.sendAck({
+            appliedLeft: outlineEl.style.left,
+            appliedTop: outlineEl.style.top,
+            appliedWidth: outlineEl.style.width,
+            appliedHeight: outlineEl.style.height,
+            computedBounds: {
+              x: domRect.x,
+              y: domRect.y,
+              width: domRect.width,
+              height: domRect.height
+            },
+            display: computed.display,
+            visibility: computed.visibility,
+            opacity: computed.opacity,
+            zIndex: computed.zIndex
+          });
+        }
+
+        if (autoExpireMs > 0) {
+          expireTimer = setTimeout(() => {
+            clearOutline();
+          }, autoExpireMs);
+        }
+      }
+
+      if (window.mindoraOverlay) {
+        window.mindoraOverlay.onShowOutline(showOutline);
+        window.mindoraOverlay.onClearOutline(clearOutline);
+        window.mindoraOverlay.sendReady();
+      }
+    })();
+  </script>
+</body>
+</html>

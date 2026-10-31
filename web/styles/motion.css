@@ -1,0 +1,469 @@
+/* ═══════════════════════════════════════════════════════════
+   MINDORA Web — Premium Motion Layer
+   ═══════════════════════════════════════════════════════════
+   Choreographed entrance, ribbon sculpture, workspace reveals,
+   upload interactions, analysis scanning, guidance transitions,
+   control polish, and reduced-motion overrides.
+   
+   Timing conventions:
+   - Control feedback: 160–200 ms
+   - Content changes:  240–320 ms
+   - Section entrances: 450–700 ms
+   - Ease-out curve:    cubic-bezier(0.22, 1, 0.36, 1)
+   ═══════════════════════════════════════════════════════════ */
+
+:root {
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-smooth: cubic-bezier(0.16, 1, 0.3, 1);
+  --duration-control: 180ms;
+  --duration-content: 280ms;
+  --duration-entrance: 550ms;
+}
+
+/* ─── 1. Page Entrance Choreography (MINDORA companion Hero Sequence) ─── */
+
+/* Initial hidden states — applied on load, removed by entrance sequence */
+.entrance-nav {
+  opacity: 0;
+  transform: translateY(-6px);
+}
+
+.entrance-lettering {
+  opacity: 0;
+  transform: translateY(24px);
+  clip-path: inset(100% 0 0 0);
+}
+
+.companion-entrance-wrap {
+  opacity: 0;
+  transform: translateY(40px) scale(0.94);
+}
+
+.entrance-bubble {
+  opacity: 0;
+  transform: translateY(12px) scale(0.92);
+}
+
+.entrance-copy {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+/* Coordinated Entrance Timings:
+   0–400 ms: oversized lettering reveals through a short upward mask.
+   250–1100 ms: MINDORA companion rises ~40px, fades in and scales from 0.94 to 1.
+   1000–1600 ms: a short welcoming sway settles.
+   1300–1900 ms: the welcome bubble appears.
+   Essential copy and action buttons remain visible and interactive throughout.
+*/
+.entrance-nav.reveal {
+  animation: revealNav 350ms var(--ease-out) forwards;
+}
+
+.entrance-lettering.reveal {
+  animation: revealLettering 400ms cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.companion-entrance-wrap.reveal {
+  animation: revealCompanion 850ms cubic-bezier(0.16, 1, 0.3, 1) 250ms forwards;
+}
+
+.companion-sway-wrap.swaying {
+  animation: companionWelcomeSway 600ms cubic-bezier(0.25, 1, 0.5, 1) forwards;
+}
+
+.entrance-bubble.reveal {
+  animation: revealBubble 600ms cubic-bezier(0.22, 1, 0.36, 1) 1300ms forwards;
+}
+
+@keyframes revealNav {
+  from { opacity: 0; transform: translateY(-6px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes revealLettering {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+    clip-path: inset(100% 0 0 0);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+    clip-path: inset(0 0 0 0);
+  }
+}
+
+@keyframes revealCompanion {
+  0% {
+    opacity: 0;
+    transform: translateY(40px) scale(0.94);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes companionWelcomeSway {
+  0%   { transform: rotate(0deg); }
+  30%  { transform: rotate(1.8deg); }
+  65%  { transform: rotate(-1.2deg); }
+  85%  { transform: rotate(0.4deg); }
+  100% { transform: rotate(0deg); }
+}
+
+@keyframes revealBubble {
+  0% {
+    opacity: 0;
+    transform: translateY(12px) scale(0.92);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes revealHeroCopy {
+  0% {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ─── 2. MINDORA companion Idle Motion & Interaction ─── */
+
+/* Idle float: gentle 4–6px floating movement over ~6 seconds */
+.companion-float-wrap.settled {
+  animation: companionIdleFloat 6s ease-in-out infinite alternate;
+}
+
+@keyframes companionIdleFloat {
+  0%   { transform: translateY(0px); }
+  100% { transform: translateY(-5px); }
+}
+
+/* Pause decorative animation when offscreen or tab hidden */
+.companion-stage-wrapper.offscreen .companion-float-wrap,
+.companion-stage-wrapper.offscreen .companion-sway-wrap {
+  animation-play-state: paused !important;
+}
+
+/* ─── 4. Workspace Entrance (IntersectionObserver triggered, once) ─── */
+
+.workspace-reveal .canvas-card {
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity var(--duration-entrance) var(--ease-out),
+              transform var(--duration-entrance) var(--ease-out);
+}
+
+.workspace-reveal .coach-panel {
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity var(--duration-entrance) var(--ease-out) 80ms,
+              transform var(--duration-entrance) var(--ease-out) 80ms;
+}
+
+.workspace-reveal.revealed .canvas-card,
+.workspace-reveal.revealed .coach-panel {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Explainer section entrance */
+.explainer-reveal .comparison-card {
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity var(--duration-entrance) var(--ease-out),
+              transform var(--duration-entrance) var(--ease-out);
+}
+
+.explainer-reveal .comparison-card:nth-child(2) {
+  transition-delay: 100ms;
+}
+
+.explainer-reveal.revealed .comparison-card {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ─── 5. Upload Interaction ─── */
+
+/* Drag-over: moss border, subtle tint, icon lifts */
+.dropzone.drag-active {
+  border-color: var(--color-moss) !important;
+  background: rgba(166, 182, 143, 0.08) !important;
+}
+
+.dropzone.drag-active .dropzone-icon {
+  transform: translateY(-4px);
+  transition: transform var(--duration-control) var(--ease-out);
+}
+
+.dropzone-icon {
+  transition: transform var(--duration-control) var(--ease-out);
+}
+
+/* Image arrival: subtle scale reveal */
+.preview-image.arriving {
+  animation: imageArrival 320ms var(--ease-out) forwards;
+}
+
+@keyframes imageArrival {
+  from {
+    opacity: 0;
+    transform: scale(0.985);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* ─── 6. Analysis Scanning ─── */
+
+/* Progress bar at top of canvas during analysis */
+.analysis-progress {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 2px;
+  width: 100%;
+  background: transparent;
+  z-index: 20;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.analysis-progress::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -40%;
+  width: 40%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    var(--color-moss),
+    var(--color-moss-light),
+    transparent
+  );
+  animation: analysisSlide 2s var(--ease-smooth) infinite;
+}
+
+@keyframes analysisSlide {
+  0%   { left: -40%; }
+  100% { left: 100%; }
+}
+
+/* Screenshot scan line */
+.scan-line {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(166, 182, 143, 0.0) 20%,
+    rgba(166, 182, 143, 0.6) 50%,
+    rgba(166, 182, 143, 0.0) 80%,
+    transparent 100%
+  );
+  pointer-events: none;
+  z-index: 15;
+  animation: scanDown 2.4s var(--ease-out) forwards;
+}
+
+@keyframes scanDown {
+  0%   { top: 0%;   opacity: 0; }
+  5%   { opacity: 1; }
+  90%  { opacity: 1; }
+  100% { top: 100%; opacity: 0; }
+}
+
+/* ─── 7. Guidance & Highlight Choreography ─── */
+
+/* Coach content transition */
+.coach-content-transition {
+  animation: coachContentReveal var(--duration-content) var(--ease-out) forwards;
+}
+
+@keyframes coachContentReveal {
+  from { opacity: 0.4; transform: translateY(4px); }
+  to   { opacity: 1;   transform: translateY(0); }
+}
+
+/* Target bracket introduction */
+.target-bracket {
+  animation: bracketAppear 400ms var(--ease-out) forwards,
+             bracketPulse 1.8s var(--ease-smooth) 400ms 1;
+}
+
+@keyframes bracketAppear {
+  from { opacity: 0; transform: scale(0.95); }
+  to   { opacity: 1; transform: scale(1); }
+}
+
+@keyframes bracketPulse {
+  0%   { box-shadow: 0 0 8px rgba(166, 182, 143, 0.4); }
+  50%  { box-shadow: 0 0 22px rgba(166, 182, 143, 0.85); }
+  100% { box-shadow: 0 0 14px rgba(166, 182, 143, 0.65); }
+}
+
+/* Recovery strip entrance */
+.recovery-box.entering {
+  animation: recoveryEnter var(--duration-content) var(--ease-out) forwards;
+}
+
+@keyframes recoveryEnter {
+  from { opacity: 0; transform: translateY(6px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* Completion checkmark */
+.completion-check {
+  display: inline-block;
+  animation: checkDraw 500ms var(--ease-out) forwards;
+}
+
+@keyframes checkDraw {
+  0%   { opacity: 0; transform: scale(0.6) rotate(-10deg); }
+  60%  { opacity: 1; transform: scale(1.08) rotate(2deg); }
+  100% { opacity: 1; transform: scale(1) rotate(0deg); }
+}
+
+/* ─── 8. Control Polish ─── */
+
+/* Button hover: arrow shifts 3–4 px */
+.btn-primary svg,
+.btn-check-main svg {
+  transition: transform var(--duration-control) var(--ease-out);
+}
+
+.btn-primary:hover:not(:disabled) svg,
+.btn-check-main:hover:not(:disabled) svg {
+  transform: translateX(3px);
+}
+
+/* Press feedback: 1px compression */
+.btn-primary:active:not(:disabled),
+.btn-check-main:active:not(:disabled) {
+  transform: translateY(1px) !important;
+}
+
+/* Focus ring for keyboard navigation */
+.btn-primary:focus-visible,
+.btn-secondary:focus-visible,
+.btn-check-main:focus-visible,
+.btn-subtle:focus-visible,
+.dropzone:focus-visible,
+.preset-chip:focus-visible {
+  outline: 2px solid var(--color-moss);
+  outline-offset: 2px;
+}
+
+/* Status badge transitions */
+.status-badge {
+  transition: background-color var(--duration-content) var(--ease-out),
+              color var(--duration-content) var(--ease-out);
+}
+
+/* Panel indicator pulse during analysis */
+.panel-indicator.analysing {
+  animation: indicatorPulse 1.2s ease-in-out infinite;
+}
+
+@keyframes indicatorPulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50%      { opacity: 0.5; transform: scale(0.8); }
+}
+
+/* Toast entrance */
+.toast-notice {
+  animation: toastSlideIn 300ms var(--ease-out) forwards !important;
+}
+
+@keyframes toastSlideIn {
+  from { transform: translateY(16px); opacity: 0; }
+  to   { transform: translateY(0);    opacity: 1; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  /* Show MINDORA companion and hero in composed static pose, no continuous motion */
+  .companion-entrance-wrap,
+  .companion-sway-wrap,
+  .companion-float-wrap,
+  .companion-parallax-wrap,
+  .entrance-lettering,
+  .entrance-bubble,
+  .entrance-copy,
+  .entrance-nav {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+    clip-path: none !important;
+    transition: none !important;
+  }
+
+  /* Workspace reveals: instant */
+  .workspace-reveal .canvas-card,
+  .workspace-reveal .coach-panel,
+  .explainer-reveal .comparison-card {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+
+  /* No scanning */
+  .scan-line,
+  .analysis-progress::after {
+    animation: none !important;
+    display: none !important;
+  }
+
+  /* No continuous pulsing */
+  .panel-indicator.analysing {
+    animation: none !important;
+  }
+
+  /* Brief fades only */
+  .coach-content-transition {
+    animation-duration: 50ms !important;
+  }
+
+  .target-bracket {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+
+  .recovery-box.entering {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+
+  .preview-image.arriving {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+
+  .ribbon-light-sweep {
+    display: none !important;
+  }
+
+  /* Preserve all functions, remove decorative motion */
+  *, *::before, *::after {
+    scroll-behavior: auto !important;
+  }
+}

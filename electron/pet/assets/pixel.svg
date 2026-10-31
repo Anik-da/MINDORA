@@ -1,0 +1,86 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 220 220" fill="none">
+  <defs>
+    <linearGradient id="pixel-hull" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ede7f6"/>
+      <stop offset="45%" stop-color="#d1c4e9"/>
+      <stop offset="100%" stop-color="#9575cd"/>
+    </linearGradient>
+    <linearGradient id="pixel-dark" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#512da8"/>
+      <stop offset="100%" stop-color="#311b92"/>
+    </linearGradient>
+    <linearGradient id="pixel-pink" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ff80ab"/>
+      <stop offset="100%" stop-color="#f50057"/>
+    </linearGradient>
+    <radialGradient id="pixel-mint-glow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#b9f6ca"/>
+      <stop offset="60%" stop-color="#00e676"/>
+      <stop offset="100%" stop-color="#00b0ff"/>
+    </radialGradient>
+  </defs>
+
+  <!-- Ground Shadow -->
+  <ellipse cx="108" cy="202" rx="56" ry="8" fill="#4527a0" opacity="0.16"/>
+
+  <!-- Articulated S-Curved Cyber Tail with Glowing Tip -->
+  <g class="pet-tail" style="transform-origin: 154px 156px;">
+    <path d="M148 156c24 8 36-6 32-26-4-20-22-18-20-4 1 8 8 10 14 6" stroke="#9575cd" stroke-width="11" stroke-linecap="round"/>
+    <path d="M148 156c24 8 36-6 32-26-4-20-22-18-20-4" stroke="#d1c4e9" stroke-width="5" stroke-linecap="round"/>
+    <circle cx="174" cy="132" r="5" fill="url(#pixel-mint-glow)"/>
+    <circle cx="174" cy="132" r="2" fill="#ffffff"/>
+  </g>
+
+  <!-- Rear Legs / Paws -->
+  <rect x="74" y="172" width="18" height="24" rx="8" fill="url(#pixel-dark)"/>
+  <rect x="124" y="172" width="18" height="24" rx="8" fill="url(#pixel-dark)"/>
+  <ellipse cx="83" cy="195" rx="12" ry="5" fill="#d1c4e9"/>
+  <ellipse cx="133" cy="195" rx="12" ry="5" fill="#d1c4e9"/>
+
+  <!-- Torso Shell -->
+  <rect x="64" y="102" width="88" height="78" rx="28" fill="url(#pixel-hull)" stroke="#512da8" stroke-width="3.5"/>
+  <path d="M78 128c18 6 42 6 60 0" stroke="#7e57c2" stroke-width="2"/>
+
+  <!-- Cyber Cat Paws (Front) -->
+  <rect x="68" y="128" width="18" height="42" rx="9" fill="url(#pixel-hull)" stroke="#512da8" stroke-width="3"/>
+  <rect x="130" y="128" width="18" height="42" rx="9" fill="url(#pixel-hull)" stroke="#512da8" stroke-width="3"/>
+  <circle cx="77" cy="164" r="3" fill="#ff80ab"/>
+  <circle cx="139" cy="164" r="3" fill="#ff80ab"/>
+
+  <!-- Collar & Mint Energy Charm Node -->
+  <path d="M74 116h68" stroke="#512da8" stroke-width="5" stroke-linecap="round"/>
+  <circle cx="108" cy="122" r="7" fill="url(#pixel-mint-glow)" stroke="#512da8" stroke-width="2"/>
+  <circle cx="108" cy="122" r="2.5" fill="#ffffff"/>
+
+  <!-- Cat Head Shell -->
+  <path d="M64 88c0-26 18-44 44-44s44 18 44 44c0 24-18 36-44 36s-44-12-44-36z" fill="url(#pixel-hull)" stroke="#512da8" stroke-width="3.5"/>
+
+  <!-- Pointed Cyber Cat Ears with Neon Pink Baffles -->
+  <g class="pet-ears">
+    <!-- Left Ear -->
+    <path d="M68 56L50 18l36 18z" fill="url(#pixel-hull)" stroke="#512da8" stroke-width="3" stroke-linejoin="round"/>
+    <path d="M66 50L56 26l22 13z" fill="url(#pixel-pink)"/>
+    <!-- Right Ear -->
+    <path d="M148 56l18-38-36 18z" fill="url(#pixel-hull)" stroke="#512da8" stroke-width="3" stroke-linejoin="round"/>
+    <path d="M150 50l10-24-22 13z" fill="url(#pixel-pink)"/>
+  </g>
+
+  <!-- Digital Visor Screen (Face) -->
+  <rect x="76" y="66" width="64" height="34" rx="14" fill="#1f1435" stroke="#512da8" stroke-width="2"/>
+
+  <!-- LED Dot-Matrix Cat Eyes & Mouth -->
+  <g class="pet-eyes">
+    <!-- Left Eye (Feline Angle) -->
+    <path d="M88 78l8-4v8l-8 4z" fill="#00e676"/>
+    <circle cx="92" cy="80" r="1.5" fill="#ffffff"/>
+    <!-- Right Eye -->
+    <path d="M128 78l-8-4v8l8 4z" fill="#00e676"/>
+    <circle cx="124" cy="80" r="1.5" fill="#ffffff"/>
+    <!-- Cute Cat Nose & W-mouth -->
+    <polygon points="108,86 106,83 110,83" fill="#ff80ab"/>
+    <path d="M102 91c2 2 4 2 6 0 2 2 4 2 6 0" stroke="#00e676" stroke-width="1.8" stroke-linecap="round"/>
+  </g>
+
+  <!-- Whisker Sensors (Holographic Cyan-Mint) -->
+  <path d="M60 78h12m-14 8h14m76-8h12m-12 8h14" stroke="#69f0ae" stroke-width="2" stroke-linecap="round"/>
+</svg>

@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MINDORA — Your personal AI. Beyond assistance.</title>
+  <meta name="description" content="MINDORA is your personal AI for screen-aware software guidance, progress checks and recovery.">
+  <meta name="theme-color" content="#F7F5F0">
+  <link rel="icon" type="image/svg+xml" href="./favicon.svg">
+  <link rel="stylesheet" href="./styles/tokens.css">
+  <link rel="stylesheet" href="./styles/app.css">
+  <link rel="stylesheet" href="./styles/motion.css">
+</head>
+<body>
+
+  <section class="web-auth-gate" id="web-auth-gate" aria-labelledby="web-auth-title">
+    <form class="web-auth-card" id="web-auth-form">
+      <div class="web-brand-mark" aria-hidden="true">M</div>
+      <p class="web-auth-kicker">MINDORA WORKSPACE</p>
+      <h1 id="web-auth-title">Welcome back.</h1>
+      <p>Sign in to your private MINDORA web workspace. This dashboard cannot observe your desktop.</p>
+      <label for="web-access-token">Workspace access token</label>
+      <input id="web-access-token" name="accessToken" type="password" autocomplete="current-password" required>
+      <button type="submit">Sign in</button>
+      <p class="web-auth-error" id="web-auth-error" role="alert" hidden></p>
+    </form>
+  </section>
+
+  <!-- Site Navigation -->
+  <header class="site-header entrance-nav">
+    <div class="container nav-container">
+      <div class="brand-group">
+        <div class="brand-dot"></div>
+        <span class="brand-name">MINDORA</span>
+        <div class="scope-chip">
+          <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+            <rect x="2" y="2" width="8" height="8" rx="1.5" stroke="currentColor" stroke-width="1.2"/>
+            <path d="M4 6h4M4 8h2" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/>
+          </svg>
+          Web Companion · LibreOffice Calc
+        </div>
+      </div>
+      <div class="nav-actions">
+        <a href="#workflow-demo" class="nav-link">How It Works</a>
+        <a href="#workflow-explainer" class="nav-link">Architecture</a>
+        <a href="https://github.com/akashgamerz6575-spec/Unstuck" target="_blank" rel="noopener noreferrer" class="nav-github-link" title="View MINDORA source repository on GitHub">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/>
+          </svg>
+          <span class="nav-github-label">View on GitHub ↗</span>
+        </a>
+        <div class="status-indicator" id="system-status">
+          <div class="status-dot"></div>
+          <span id="system-status-text">Ready</span>
+        </div>
+        <button class="web-signout" id="web-signout" type="button" hidden>Sign out</button>
+        <button class="web-signout" id="web-dashboard-return" type="button" hidden>Back to MINDORA</button>
+      </div>
+    </div>
+  </header>
+
+  <main class="web-dashboard" id="web-dashboard" hidden>
+    <aside class="web-sidebar" aria-label="MINDORA dashboard navigation">
+      <div class="web-sidebar-brand"><span class="web-brand-mark">M</span><span>MINDORA</span></div>
+      <nav id="web-dashboard-nav">
+        <button type="button" data-view="home" class="active">Home</button>
+        <button type="button" data-view="tasks">Tasks</button>
+        <button type="button" data-view="browser">Browser</button>
+        <button type="button" data-view="research">Research</button>
+        <button type="button" data-view="monitors">Monitors</button>
+        <button type="button" data-view="history">History</button>
+        <button type="button" data-view="settings">Settings</button>
+      </nav>
+      <div class="web-sidebar-footer"><span class="service-dot" id="web-service-dot"></span><span id="web-service-status">Connecting</span></div>
+    </aside>
+    <section class="web-dashboard-main">
+      <header class="web-dashboard-top"><div><p class="web-eyebrow">YOUR PERSONAL AI</p><h1 id="web-view-title">Home</h1></div><button type="button" class="web-signout" id="web-dashboard-signout">Sign out</button></header>
+      <section class="web-view" data-web-view="home">
+        <div class="web-welcome"><div><p class="web-eyebrow">MINDORA WORKSPACE</p><h2>What would you like to move forward?</h2><p>Turn a goal into a plan, then review each step and its evidence.</p></div><img src="./assets/mindora.png" alt="MINDORA companion" width="88" height="88"></div>
+        <form id="web-task-form" class="web-task-form"><label for="web-task-input">Describe a task</label><textarea id="web-task-input" rows="3" maxlength="10000" required placeholder="Research recent guidance on…"></textarea><div class="web-task-form-footer"><span>External actions pause for your approval. Desktop observation is available only in MINDORA for desktop.</span><button type="submit">Plan task <span aria-hidden="true">→</span></button></div></form>
+        <div class="web-quick-actions"><span>Quick start</span><button type="button" data-task-prompt="Research the latest credible sources about ">Research a topic</button><button type="button" data-task-prompt="Summarize the key information on ">Summarize a page</button><button type="button" data-task-prompt="Compare these options using current sources: ">Compare options</button></div>
+        <div class="web-overview-grid"><article><span class="web-metric-label">Active task</span><strong id="web-active-count">—</strong><p>Tasks in progress</p></article><article><span class="web-metric-label">Gemini</span><strong id="web-gemini-status">—</strong><p>Planning service</p></article><article><span class="web-metric-label">TinyFish</span><strong id="web-tinyfish-status">—</strong><p>Research and browser service</p></article><article><span class="web-metric-label">Usage</span><strong id="web-usage-summary">—</strong><p>TinyFish wallet</p></article></div>
+        <div class="web-section-heading"><div><p class="web-eyebrow">RECENT</p><h2>Recent tasks</h2></div><button type="button" data-open-view="tasks">View all</button></div><div class="web-record-list" id="web-home-tasks"></div>
+        <div class="web-desktop-note"><strong>Need screen-aware help?</strong><span>Screen observation is available in the desktop app after you choose Start or Check.</span><button type="button" id="web-open-guidance">Open web screen guidance</button></div>
+      </section>
+      <section class="web-view" data-web-view="tasks" hidden><div class="web-section-heading"><div><p class="web-eyebrow">EXECUTION</p><h2>Task activity</h2></div><button type="button" data-refresh="tasks">Refresh</button></div><div class="web-record-list" id="web-task-list"></div></section>
+      <section class="web-view" data-web-view="browser" hidden><form id="web-browser-form" class="web-inline-form"><label>Website URL<input name="url" type="url" required placeholder="https://example.com"></label><label>Task goal<input name="goal" required placeholder="Summarize this page"></label><label>Profile<select name="profileId" id="web-browser-profile"><option value="">Default profile</option></select></label><button type="submit">Approve &amp; start</button></form><div class="web-section-heading"><div><p class="web-eyebrow">TINYFISH</p><h2>Browser executions</h2><p>Starting a run authorizes TinyFish to act toward the goal. CAPTCHA, MFA, and security controls are never bypassed.</p></div><button type="button" data-refresh="browser">Refresh</button></div><div class="web-record-list" id="web-browser-list"></div></section>
+      <section class="web-view" data-web-view="research" hidden><form id="web-research-form" class="web-inline-form"><label>Research question<input name="query" required maxlength="10000" placeholder="What would you like to understand?"></label><label>Search type<select name="domainType"><option value="web">Web</option><option value="news">News</option><option value="research_paper">Research papers</option></select></label><button type="submit">Start research</button></form><div class="web-section-heading"><div><p class="web-eyebrow">SOURCES &amp; REPORTS</p><h2>Research history</h2></div><button type="button" data-refresh="research">Refresh</button></div><div class="web-record-list" id="web-research-list"></div></section>
+      <section class="web-view" data-web-view="monitors" hidden><form id="web-monitor-form" class="web-inline-form"><label>Page URL<input name="url" type="url" required placeholder="https://example.com"></label><label>Purpose<input name="purpose" required placeholder="Track product updates"></label><label>Schedule<input name="scheduleCron" required placeholder="0 9 * * 1"></label><button type="submit">Create monitor</button></form><div class="web-section-heading"><div><p class="web-eyebrow">SCHEDULED</p><h2>Monitors</h2></div><button type="button" data-refresh="monitors">Refresh</button></div><div class="web-record-list" id="web-monitor-list"></div></section>
+      <section class="web-view" data-web-view="history" hidden><div class="web-section-heading"><div><p class="web-eyebrow">ACTIVITY</p><h2>History</h2></div><button type="button" data-refresh="history">Refresh</button></div><div class="web-record-list" id="web-history-list"></div></section>
+      <section class="web-view" data-web-view="settings" hidden><div class="web-settings-grid"><article><p class="web-eyebrow">CONNECTIONS</p><h2>Gemini</h2><p id="web-settings-gemini">Checking server configuration…</p><p>Provider credentials stay on the trusted backend.</p></article><article><p class="web-eyebrow">CONNECTIONS</p><h2>TinyFish</h2><p id="web-settings-tinyfish">Checking service…</p><button type="button" data-refresh="status">Test connection</button></article><article><p class="web-eyebrow">BROWSER</p><h2>Profiles</h2><div id="web-profiles"></div></article><article><p class="web-eyebrow">USAGE</p><h2>Wallet &amp; usage</h2><div id="web-wallet"></div><button type="button" data-refresh="wallet">Refresh usage</button></article><article><p class="web-eyebrow">PRIVACY</p><h2>Desktop screen access</h2><p>This web app cannot request or inspect your desktop screen. Use the desktop app for local screen coaching.</p></article></div></section>
+    </section>
+  </main>
+
+  <!-- Hero Section: Cinematic MINDORA companion stage -->
+  <section class="hero-section" id="hero">
+    <div class="hero-stage">
+      <!-- Curved Horizon & Atmospheric Lighting -->
+      <div class="hero-lighting" aria-hidden="true">
+        <div class="horizon-curve"></div>
+        <div class="ambient-blue-glow"></div>
+        <div class="ambient-amber-glow"></div>
+        <div class="horizon-surface-light"></div>
+      </div>
+
+      <!-- Enormous MINDORA lettering (Behind the companion artwork) -->
+      <div class="hero-backdrop-text-wrap" aria-hidden="true">
+        <div class="hero-backdrop-text entrance-lettering">MINDORA</div>
+      </div>
+
+      <!-- Central companion stage with nested wrappers -->
+      <div class="companion-stage-wrapper">
+        <div class="companion-parallax-wrap" id="companion-parallax">
+          <div class="companion-entrance-wrap">
+            <div class="companion-sway-wrap">
+              <div class="companion-float-wrap">
+                <picture class="companion-picture">
+                  
+                  <img 
+                    src="./assets/mindora.png" 
+                    alt="MINDORA's welcoming AI companion" 
+                    class="companion-character-img"
+                    width="1254" 
+                    height="1254"
+                    loading="eager"
+                    decoding="async"
+                  >
+                </picture>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Welcome Greeting Bubble -->
+        <div class="companion-speech-bubble entrance-bubble" id="companion-speech-bubble" role="status">
+          <div class="speech-bubble-dot"></div>
+          <span class="speech-bubble-text">Hi, I’m MINDORA. Let’s find your next move.</span>
+        </div>
+      </div>
+
+      <!-- Connected Supporting Copy & Actions (Visible immediately on load) -->
+      <div class="hero-copy-card">
+        <h1 class="hero-headline">Your screen. One clear next move.</h1>
+        <p class="hero-subcopy">Show MINDORA where you’re stuck. Get guidance, check your progress, and recover from a wrong turn.</p>
+        
+        <div class="hero-actions">
+          <a href="#workspace" class="btn-primary" id="btn-hero-try">
+            <span>Try MINDORA</span>
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+              <path d="M6 3.5l5 4.5-5 4.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </a>
+          <button class="btn-secondary" id="btn-hero-example" type="button">
+            <span>Explore an example</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Compact Visual Product Demonstration -->
+  <section class="demo-walkthrough-section" id="workflow-demo" aria-label="How MINDORA Works">
+    <div class="container demo-container">
+      <div class="demo-badge-wrap">
+        <span class="demo-badge">Documented Example · How MINDORA Guides You</span>
+        <span class="demo-badge-sub">Illustrative preview; live interactive guidance is available below</span>
+      </div>
+
+      <div class="demo-card-stage">
+        <!-- Short progression: Observe → Guide → Check -->
+        <div class="demo-progression-bar" aria-label="Guidance steps">
+          <div class="demo-step active">
+            <span class="step-num">1</span>
+            <span class="step-text">Observe</span>
+          </div>
+          <div class="demo-step-arrow" aria-hidden="true">→</div>
+          <div class="demo-step active">
+            <span class="step-num">2</span>
+            <span class="step-text">Guide</span>
+          </div>
+          <div class="demo-step-arrow" aria-hidden="true">→</div>
+          <div class="demo-step active">
+            <span class="step-num">3</span>
+            <span class="step-text">Check</span>
+          </div>
+        </div>
+
+        <!-- Demonstration split layout: Screenshot Detail + Grounded Bracket + Coach Card -->
+        <div class="demo-split-layout">
+          <!-- Screenshot detail with high-contrast highlight outline -->
+          <div class="demo-screenshot-box">
+            <div class="demo-screenshot-header">
+              <span class="demo-window-dot"></span>
+              <span class="demo-window-title">LibreOffice Calc — Sheet Observation Detail</span>
+            </div>
+            <div class="demo-screenshot-body">
+              <div class="demo-calc-grid">
+                <div class="demo-grid-row header">
+                  <span class="cell corner"></span>
+                  <span class="cell col-head">A</span>
+                  <span class="cell col-head">B</span>
+                </div>
+                <div class="demo-grid-row">
+                  <span class="cell row-head">1</span>
+                  <span class="cell data bold">Department</span>
+                  <span class="cell data bold">Requests</span>
+                </div>
+                <div class="demo-grid-row">
+                  <span class="cell row-head">2</span>
+                  <span class="cell data">Library</span>
+                  <span class="cell data num">42</span>
+                </div>
+                <div class="demo-grid-row">
+                  <span class="cell row-head">3</span>
+                  <span class="cell data">IT Desk</span>
+                  <span class="cell data num">68</span>
+                </div>
+              </div>
+              <div class="demo-target-bracket">
+                <span class="demo-target-label">Target: Select table A1:B5</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- MINDORA instruction card -->
+          <div class="demo-coach-card">
+            <div class="demo-coach-header">
+              <picture class="coach-avatar-picture">
+                
+                <img src="./assets/mindora.png" alt="MINDORA companion" width="34" height="34" class="coach-avatar-img">
+              </picture>
+              <div>
+                <div class="demo-coach-name">MINDORA · Step Guidance</div>
+                <div class="demo-coach-status">Grounded Target Outline</div>
+              </div>
+            </div>
+            <div class="demo-coach-body">
+              <h4 class="demo-directive">Click cell A1 and drag to B5 to select the tabular data.</h4>
+              <div class="demo-rationale">
+                <strong>What MINDORA noticed:</strong> Cell C10 was active, but the chart wizard needs your data range selected first.
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Interactive Workspace Section -->
+  <section class="workspace-section" id="workspace">
+    <div class="container workspace-intro">
+      <h2 class="workspace-heading">Your screen. Your next move.</h2>
+      <p class="workspace-subheading">Upload a screenshot or choose an example state to test grounded vision guidance and mistake recovery.</p>
+    </div>
+
+    <div class="container workspace-grid workspace-reveal">
+
+      <!-- Left Column: Screenshot Canvas -->
+      <div class="canvas-card">
+        <header class="canvas-header">
+          <div class="canvas-title-group">
+            <div class="canvas-step-number" id="canvas-step-num">1</div>
+            <h2 class="canvas-title" id="canvas-card-title">Your screen</h2>
+          </div>
+          <div class="canvas-meta-chips">
+            <span class="canvas-badge" id="image-meta-badge">No image loaded</span>
+            <span class="canvas-badge" id="candidate-count-badge" style="display: none;">0 candidates</span>
+          </div>
+        </header>
+
+        <!-- Always-Visible Example Selector Bar (Discoverable whether image is loaded or not) -->
+        <div class="example-bar" id="example-bar">
+          <span class="example-bar-label">Try an example:</span>
+          <div class="scenario-chips" role="group" aria-label="Preset Calc examples">
+            <button class="scenario-chip" data-scenario="ready" type="button" title="Clean Calc capture with table unselected">Start</button>
+            <button class="scenario-chip" data-scenario="selected" type="button" title="Clean Calc capture with table selected">Data selected</button>
+            <button class="scenario-chip" data-scenario="recovery" type="button" title="Clean Calc capture with pie chart">Wrong chart</button>
+            <button class="scenario-chip" data-scenario="complete" type="button" title="Clean Calc capture with horizontal bar chart">Finished chart</button>
+          </div>
+        </div>
+
+        <div class="canvas-body" id="canvas-dropzone-container">
+          <!-- Analysis progress bar (hidden until analysis) -->
+          <div class="analysis-progress" id="analysis-progress" style="display: none;"></div>
+
+          <!-- Dropzone State -->
+          <div class="dropzone" id="dropzone" role="button" tabindex="0" aria-label="Upload screenshot dropzone">
+            <div class="dropzone-icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                <path d="M12 16V4M12 4L7 9M12 4L17 9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M4 16v4a2 2 0 002 2h12a2 2 0 002-2v-4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+              </svg>
+            </div>
+            <h3 class="dropzone-title">Drop your screenshot here</h3>
+            <p class="dropzone-subtitle">Click to browse or paste from clipboard (Ctrl+V). PNG or JPEG up to 8 MiB.</p>
+            <input type="file" id="file-input" class="file-input" accept="image/png, image/jpeg" aria-label="Screenshot file input">
+          </div>
+
+          <!-- Preview & Highlight State -->
+          <div class="preview-container" id="preview-container">
+            <div class="preview-wrapper" id="preview-wrapper">
+              <img id="preview-img" class="preview-image" alt="Uploaded software screenshot">
+              <div id="highlight-overlay" class="highlight-overlay"></div>
+            </div>
+          </div>
+        </div>
+
+        <footer class="canvas-footer">
+          <span class="canvas-footer-tip" id="canvas-footer-tip">Upload a screenshot of your active application to begin.</span>
+          <div class="canvas-actions">
+            <button class="btn-subtle" id="btn-fresh-screenshot" style="display: none;" title="Replace current screenshot with a fresh one">
+              Fresh screenshot
+            </button>
+            <button class="btn-subtle" id="btn-clear-image" style="display: none;" title="Remove loaded screenshot">
+              Clear
+            </button>
+          </div>
+        </footer>
+      </div>
+
+      <!-- Right Column: Readable Warm Paper Coach Panel -->
+      <aside class="coach-panel" id="coach-panel">
+        <header class="panel-header">
+          <div class="panel-brand">
+            <picture class="coach-avatar-picture">
+              
+              <img src="./assets/mindora.png" alt="MINDORA companion" width="36" height="36" class="coach-avatar-img">
+            </picture>
+            <div class="panel-brand-text">
+              <h2 class="panel-title">MINDORA · Your guide</h2>
+            </div>
+          </div>
+          <span class="status-badge ready" id="status-badge">Ready</span>
+        </header>
+
+        <!-- Goal Input Card with Explicit Mode Distinction -->
+        <div class="goal-card">
+          <div class="goal-card-header">
+            <div style="display: flex; align-items: center; gap: 8px;">
+              <span class="goal-label">Your Goal</span>
+              <span class="goal-mode-chip preset" id="goal-mode-chip">Preset</span>
+            </div>
+            <button class="preset-chip" id="btn-preset-chart" type="button" title="Set tested LibreOffice Calc bar chart task">
+              Preset: Make a chart
+            </button>
+          </div>
+          <textarea 
+            id="goal-input" 
+            class="goal-textarea" 
+            rows="3" 
+            maxlength="500" 
+            placeholder="Describe what you want to achieve..."
+          >Create a horizontal bar chart from A1:B5, including the Department and Requests headers, titled Requests by department.</textarea>
+
+          <div class="tutorial-url-wrap" style="margin-top: 10px;">
+            <label for="tutorial-url-input" class="goal-label" style="display: block; font-size: 11.5px; margin-bottom: 4px; text-transform: uppercase; letter-spacing: 0.05em; color: var(--color-text-muted);">
+              Tutorial video <span style="font-weight: normal; text-transform: none; opacity: 0.75;">(optional)</span>
+            </label>
+            <input 
+              type="url" 
+              id="tutorial-url-input" 
+              class="tutorial-url-input" 
+              placeholder="https://www.youtube.com/watch?v=..." 
+              aria-label="Optional YouTube tutorial video URL"
+              style="width: 100%; padding: 7px 10px; border-radius: var(--radius-control); border: 1.5px solid var(--color-border-fine); background: #FFF; font-size: 13px; color: var(--color-text-dark); box-sizing: border-box;"
+            />
+            <p class="tutorial-privacy-notice" style="font-size: 11px; line-height: 1.35; color: var(--color-text-muted); margin: 4px 0 0 0;">
+              Optional public YouTube link. Analyzed once by Gemini for steps; video content is not downloaded, stored, or scraped.
+            </p>
+          </div>
+
+          <div class="goal-clarification-hint" id="goal-clarification-hint" style="display: none;">
+            Custom goal active. Stale responses cleared.
+          </div>
+        </div>
+
+        <!-- Busy / Analysing Indicator -->
+        <div class="busy-box" id="busy-box">
+          <div class="busy-spinner"></div>
+          <span class="busy-label" id="busy-label">Analysing your screenshot…</span>
+        </div>
+
+        <!-- Dominant Actionable Instruction Box -->
+        <div class="instruction-box" id="instruction-box">
+          <span class="instruction-tag" id="instruction-step-tag">Step 1</span>
+          <h3 class="instruction-text" id="instruction-text">Upload a screenshot and click "Find my next move" to begin.</h3>
+        </div>
+
+        <!-- Recovery / Correction Box (Active on recovery state) -->
+        <div class="recovery-box" id="recovery-box">
+          <strong>Correction:</strong> <span id="recovery-text">You clicked Format instead of Insert. Let's get back on track.</span>
+        </div>
+
+        <!-- Uncertain Notice Box (Active on uncertain state) -->
+        <div class="uncertain-box" id="uncertain-box">
+          <strong>Notice:</strong> <span id="uncertain-text">Controls could not be identified with confidence. Please make sure LibreOffice Calc is in focus and not occluded.</span>
+        </div>
+
+        <!-- What I Noticed Observation Box -->
+        <div class="observation-box" id="observation-box">
+          <div class="observation-header">
+            <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+              <circle cx="6" cy="6" r="4.5" stroke="currentColor" stroke-width="1.2"/>
+              <path d="M6 4v2.5M6 8.5h.01" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/>
+            </svg>
+            <span>What I noticed</span>
+          </div>
+          <p class="observation-text" id="observation-text">Awaiting your screenshot upload to inspect the spreadsheet state.</p>
+        </div>
+
+        <!-- Action Controls -->
+        <div class="controls-area">
+          <button class="btn-check-main" id="btn-action">
+            <span id="btn-action-label">Find my next move</span>
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+              <path d="M6 3.5l5 4.5-5 4.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </button>
+
+          <div class="secondary-actions-row">
+            <button class="btn-subtle" id="btn-cancel" style="display: none;">Cancel</button>
+            <button class="btn-subtle" id="btn-reset-session">Reset session</button>
+          </div>
+        </div>
+
+        <!-- Telemetry Footer -->
+        <footer class="panel-footer">
+          <span>Model: gemini-3.1-flash-lite</span>
+          <span class="budget-chip" id="budget-chip">15 checks left</span>
+        </footer>
+      </aside>
+
+    </div>
+  </section>
+
+  <!-- Explainer Section: Tested Workflow & Architecture -->
+  <section class="explainer-section explainer-reveal" id="workflow-explainer">
+    <div class="container">
+      <h2 class="explainer-title">The Tested Workflow</h2>
+      <p class="explainer-subtitle">MINDORA is validated against the LibreOffice Calc bar chart workflow. The coach verifies every action through screen vision and local OCR candidate grounding.</p>
+
+      <div class="comparison-grid">
+        <!-- Card 1: Web Companion -->
+        <div class="comparison-card highlighted">
+          <span class="comparison-tag web">Web Companion</span>
+          <h3 class="comparison-heading">Accessible In-Browser Guidance</h3>
+          <p style="color: var(--color-text-on-dark-muted); font-size: 0.92rem;">
+            Upload screenshots from any OS or browser. The web interface extracts text candidates, reasons with Gemini multimodal vision, and draws high-contrast grounded bounding boxes directly over your screenshot.
+          </p>
+          <ul class="feature-list">
+            <li class="feature-item">
+              <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 7l3 3 5-6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              <span>Instant preview without installing desktop agents</span>
+            </li>
+            <li class="feature-item">
+              <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 7l3 3 5-6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              <span>Turn-by-turn verification with fresh screenshots</span>
+            </li>
+            <li class="feature-item">
+              <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 7l3 3 5-6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              <span>Grounded OCR candidates: zero hallucinated coordinates</span>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Card 2: Desktop App -->
+        <div class="comparison-card" id="desktop-explainer">
+          <span class="comparison-tag desktop">Windows Desktop App</span>
+          <h3 class="comparison-heading">Live Desktop Transparent Overlay</h3>
+          <p style="color: var(--color-text-on-dark-muted); font-size: 0.92rem;">
+            The native Electron companion runs locally on Windows 11. It automatically hides its own UI during screen capture and projects transparent click-through highlights directly onto your live LibreOffice Calc window.
+          </p>
+          <ul class="feature-list">
+            <li class="feature-item">
+              <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 7l3 3 5-6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              <span>One-key check via shortcut (<kbd>Ctrl+Alt+U</kbd>)</span>
+            </li>
+            <li class="feature-item">
+              <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 7l3 3 5-6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              <span>Transparent overlay with pass-through click interaction</span>
+            </li>
+            <li class="feature-item">
+              <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 7l3 3 5-6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              <span>Tested foreground window scoping & 125% DPI mapping</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Site Footer -->
+  <footer class="site-footer">
+    <div class="container footer-content">
+      <div class="footer-left">
+        <div class="brand-dot" style="width: 8px; height: 8px;"></div>
+        <span>MINDORA — Your personal AI. Beyond assistance.</span>
+      </div>
+      <div class="footer-center">
+        <span>Built by Akash V · Powered by Google Gemini</span>
+        <a href="https://github.com/akashgamerz6575-spec/Unstuck" target="_blank" rel="noopener noreferrer" class="footer-github-link">
+          View on GitHub ↗
+        </a>
+      </div>
+      <div class="footer-right">
+        <span>Screen snapshots sent to Gemini solely upon user check. Never continuously recorded.</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Toast Notification -->
+  <div class="toast-notice" id="toast-notice"></div>
+
+  <script type="module" src="./dashboard.js"></script>
+  <script type="module" src="./app.js"></script>
+</body>
+</html>

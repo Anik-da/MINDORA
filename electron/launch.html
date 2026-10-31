@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MINDORA — Your personal AI. Beyond assistance.</title>
+  <link rel="stylesheet" href="./launch.css">
+</head>
+<body>
+  <div class="window-container">
+    <!-- Compact Window Header -->
+    <header class="titlebar">
+      <div class="titlebar-left">
+        <!-- MINDORA branding with yellow spark -->
+        <div class="brand">
+          <span class="brand-text">MINDORA</span>
+          <svg class="brand-spark" width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true">
+            <circle cx="9" cy="9" r="2.2" fill="#FFC443"/>
+            <line x1="9" y1="2" x2="9" y2="5" stroke="#FFC443" stroke-width="2" stroke-linecap="round"/>
+            <line x1="9" y1="13" x2="9" y2="16" stroke="#FFC443" stroke-width="2" stroke-linecap="round"/>
+            <line x1="2" y1="9" x2="5" y2="9" stroke="#FFC443" stroke-width="2" stroke-linecap="round"/>
+            <line x1="13" y1="9" x2="16" y2="9" stroke="#FFC443" stroke-width="2" stroke-linecap="round"/>
+          </svg>
+        </div>
+
+        <nav class="nav-pill" aria-label="Main Navigation">
+          <button type="button" class="nav-item active" data-page="home" aria-current="page">Home</button>
+          <button type="button" class="nav-item" data-page="tasks">Tasks</button>
+          <button type="button" class="nav-item" data-page="browser">Browser</button>
+          <button type="button" class="nav-item" data-page="research">Research</button>
+          <button type="button" class="nav-item" data-page="monitors">Monitors</button>
+          <button type="button" class="nav-item" data-page="history">History</button>
+          <button type="button" class="nav-item" data-page="settings">Settings</button>
+          <button type="button" class="key-status-chip" id="btn-key-status" title="Manage your personal Gemini API Key" aria-haspopup="dialog">
+            <span class="key-chip-dot" id="key-chip-dot" aria-hidden="true"></span>
+            <span id="key-chip-label">Gemini Key</span>
+          </button>
+          <button type="button" class="key-status-chip miko-toggle-chip" id="btn-miko-toggle" aria-pressed="true" title="Show or hide MIKO">
+            <span class="key-chip-dot" aria-hidden="true"></span>
+            <span id="miko-toggle-label">MIKO On</span>
+          </button>
+        </nav>
+      </div>
+
+      <!-- Window Titlebar Controls -->
+      <div class="titlebar-controls">
+        <button class="ctrl-btn" id="btn-min" title="Minimize" aria-label="Minimize Window">
+          <svg width="12" height="12" viewBox="0 0 12 12"><path d="M2.5 6h7" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+        </button>
+        <button class="ctrl-btn close" id="btn-close" title="Close" aria-label="Close Window">
+          <svg width="12" height="12" viewBox="0 0 12 12"><path d="M3 3l6 6M9 3l-6 6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+        </button>
+      </div>
+    </header>
+
+    <!-- Main View: Two-Column Pastel Composition -->
+    <main class="launch-content">
+      <!-- Left Column: Soft Rounded Lavender Mascot Panel -->
+      <section class="mascot-panel" aria-label="Meet MINDORA">
+        <!-- Subtle Organic Background Gradients -->
+        <div class="mascot-bg-accent" aria-hidden="true"></div>
+
+        <!-- Meet MINDORA pill -->
+        <div class="meet-badge">
+          <span>MEET MINDORA</span>
+        </div>
+
+        <!-- Yellow accent sparkles above the companion -->
+        <div class="antenna-sparks" aria-hidden="true">
+          <span class="spark spark-1"></span>
+          <span class="spark spark-2"></span>
+          <span class="spark spark-3"></span>
+        </div>
+
+        <!-- Welcoming Speech Bubble -->
+        <div class="speech-bubble" role="note" aria-label="MINDORA says: Let's do this.">
+          <span class="speech-bubble-text">Let's<br>do this.</span>
+          <div class="speech-tail" aria-hidden="true"></div>
+        </div>
+
+        <!-- Existing companion artwork retained pending replacement artwork -->
+        <div class="mascot-img-wrap">
+          <img 
+            src="./assets/mindora.png" 
+            alt="MINDORA's welcoming AI companion" 
+            class="mascot-img"
+          />
+        </div>
+      </section>
+
+      <!-- Right Column: Warm-White Task Workspace -->
+      <section class="task-workspace" aria-label="Task Workspace">
+        <div class="workspace-scroll-wrap">
+          <header class="workspace-header">
+            <h1 class="headline">Less stuck.<br>More doing.</h1>
+            <p class="supporting-text">Your screen. Your next step.</p>
+          </header>
+
+          <form class="task-form" id="task-form" onsubmit="return false;">
+            <!-- Goal Section -->
+            <div class="field-group">
+              <div class="field-label-row">
+                <label for="goal-input" class="field-label">What are we working on?</label>
+                <button type="button" class="preset-chip" id="btn-preset" title="Use the LibreOffice Calc bar chart tutorial goal">
+                  Preset: Make a chart
+                </button>
+              </div>
+              <textarea 
+                id="goal-input" 
+                class="goal-input" 
+                rows="3" 
+                maxlength="4000"
+                required
+                placeholder="Describe what you want to do..."
+                aria-label="What are we working on?"
+              ></textarea>
+            </div>
+
+            <!-- Application Selection Section -->
+            <div class="field-group">
+              <label class="field-label" id="label-choose-app">Choose an application</label>
+              <div class="app-selector" id="app-selector" tabindex="0" role="button" aria-haspopup="listbox" aria-expanded="false" aria-labelledby="label-choose-app" aria-label="Choose an open application">
+                <div class="app-selector-left">
+                  <!-- App Grid Icon -->
+                  <svg class="app-grid-icon" width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true">
+                    <rect x="2.5" y="2.5" width="5.2" height="5.2" rx="1.6" stroke="currentColor" stroke-width="1.6"/>
+                    <rect x="10.3" y="2.5" width="5.2" height="5.2" rx="1.6" stroke="currentColor" stroke-width="1.6"/>
+                    <rect x="2.5" y="10.3" width="5.2" height="5.2" rx="1.6" stroke="currentColor" stroke-width="1.6"/>
+                    <rect x="10.3" y="10.3" width="5.2" height="5.2" rx="1.6" stroke="currentColor" stroke-width="1.6"/>
+                  </svg>
+                  <div class="target-status-dot" id="target-dot" aria-hidden="true"></div>
+                  <span class="target-title" id="target-title">Choose an application</span>
+                </div>
+                <div class="app-selector-right">
+                  <button type="button" class="btn-refresh-inline" id="btn-refresh-target" title="Scan active windows" aria-label="Refresh target application">
+                    <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                      <path d="M14 8A6 6 0 1 1 9.5 2.5"/>
+                      <polyline points="14 2 14 6 10 6"/>
+                    </svg>
+                  </button>
+                  <svg class="chevron-icon" width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <polyline points="3.5 5.5 7 9 10.5 5.5"/>
+                  </svg>
+                </div>
+              </div>
+              <div class="target-picker-list" id="target-picker-list" role="listbox" aria-label="Open applications" hidden></div>
+            </div>
+
+            <!-- Primary Action Button: Capsule Coral Button -->
+            <div class="action-row">
+              <button type="button" class="btn-start" id="btn-start">
+        <span>Start with MINDORA</span>
+                <svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true">
+                  <path d="M3.75 9h10.5M10.5 5.25L14.25 9l-3.75 3.75" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </button>
+            </div>
+
+            <section class="agent-task-panel" aria-label="MINDORA agent task runner">
+              <div class="agent-task-heading">
+                <div>
+                  <strong>Let MINDORA work across tools</strong>
+                  <p>Gemini plans. MINDORA can observe your desktop or use TinyFish; browser actions need approval.</p>
+                </div>
+                <button type="button" class="agent-start-button" id="btn-agent-start">Plan &amp; run</button>
+              </div>
+              <div class="agent-task-status" id="agent-task-status" role="status" aria-live="polite">Ready for a task.</div>
+              <div class="agent-approval" id="agent-approval" hidden>
+                <span id="agent-approval-label">MINDORA needs approval.</span>
+                <div>
+                  <button type="button" class="agent-approve" id="btn-agent-approve">Approve</button>
+                  <button type="button" class="agent-reject" id="btn-agent-reject">Decline</button>
+                </div>
+              </div>
+              <div class="agent-task-controls" id="agent-task-controls" hidden>
+                <button type="button" id="btn-agent-pause">Pause</button>
+                <button type="button" id="btn-agent-resume">Resume</button>
+                <button type="button" id="btn-agent-cancel">Stop</button>
+              </div>
+              <ol class="agent-step-list" id="agent-step-list" aria-label="Task execution steps"></ol>
+              <pre class="agent-task-result" id="agent-task-result" hidden></pre>
+              <details class="agent-task-history">
+                <summary>Recent agent tasks</summary>
+                <ul id="agent-task-history-list"><li>No agent history yet.</li></ul>
+              </details>
+            </section>
+
+            <!-- Transparent Screenshot Disclosure -->
+            <footer class="disclosure-row">
+              <svg class="info-icon" width="15" height="15" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <circle cx="8" cy="8" r="6.5"/>
+                <line x1="8" y1="7" x2="8" y2="11"/>
+                <circle cx="8" cy="4.7" r="0.8" fill="currentColor"/>
+              </svg>
+              <span>When you start or check desktop guidance, the active app window image and OCR text are sent to Gemini for analysis. Optional screen-awareness monitoring stays local.</span>
+            </footer>
+            <section class="home-overview" aria-label="Task overview">
+              <div class="home-overview-heading"><div><span class="eyebrow">MINDORA AGENT</span><p id="home-agent-status">Ready when you are.</p></div><button type="button" id="btn-home-agent-start">Plan this task</button></div>
+              <div class="home-service-row"><span>Gemini <strong id="home-gemini-status">Checking</strong></span><span>TinyFish <strong id="home-tinyfish-status">Checking</strong></span><span>Usage <strong id="home-usage-status">—</strong></span></div>
+              <details class="home-recent"><summary>Recent tasks</summary><ul id="home-recent-tasks"><li>No recent tasks.</li></ul></details>
+            </section>
+          </form>
+        </div>
+      </section>
+    </main>
+    <main class="feature-page" id="feature-page" hidden>
+      <header class="feature-page-header"><div><p class="eyebrow" id="feature-eyebrow">WORKSPACE</p><h1 id="feature-title">Tasks</h1><p id="feature-description">Follow each task from plan through evidence.</p></div><button type="button" class="feature-refresh" id="feature-refresh">Refresh</button></header>
+      <section class="feature-view" data-view="tasks" hidden><div id="agent-task-slot"></div></section>
+      <section class="feature-view" data-view="browser" hidden>
+        <div class="feature-toolbar"><div><strong>Browser activity</strong><p>Runs use the configured TinyFish connection. External write actions require approval.</p></div><button type="button" data-load="runs">Refresh runs</button></div>
+        <form id="browser-run-form" class="feature-form"><label>Website URL<input name="url" type="url" required placeholder="https://example.com"></label><label>What should MINDORA do?<textarea name="goal" rows="2" required placeholder="Summarize the pricing page"></textarea></label><label>Browser profile<select name="profileId" id="browser-profile"><option value="">Default profile</option></select></label><button type="submit">Start browser run</button></form>
+        <div id="browser-runs" class="feature-list" aria-live="polite"></div>
+        <section id="browser-capture-viewer" class="capture-viewer" aria-live="polite" hidden>
+          <header><strong id="browser-capture-title">Browser capture</strong><button type="button" id="browser-capture-close" aria-label="Close capture">Close</button></header>
+          <img id="browser-capture-image" alt="Captured browser page" hidden>
+          <pre id="browser-capture-html" hidden></pre>
+        </section>
+      </section>
+      <section class="feature-view" data-view="research" hidden>
+        <form id="tinyfish-search-form" class="feature-form"><label>Free TinyFish web search<input name="query" required maxlength="1000" placeholder="Search the live web"></label><button type="submit">Search</button></form>
+        <div id="tinyfish-search-results" class="feature-list" aria-live="polite"></div>
+        <form id="research-form" class="feature-form"><label>Research question<input name="query" required maxlength="10000" placeholder="What would you like to understand?"></label><label>Research type<select name="domainType"><option value="web">Web</option><option value="news">News</option><option value="research_paper">Research papers</option></select></label><button type="submit">Start research</button></form>
+        <div id="research-runs" class="feature-list" aria-live="polite"></div>
+      </section>
+      <section class="feature-view" data-view="monitors" hidden>
+        <form id="monitor-form" class="feature-form"><label>Monitor goal<input name="goal" required placeholder="Track changes to a page"></label><label>Page URL<input name="url" type="url" required placeholder="https://example.com"></label><label>Schedule (cron)<input name="scheduleCron" required placeholder="0 9 * * 1"></label><button type="submit">Create monitor</button></form>
+        <div id="monitor-list" class="feature-list" aria-live="polite"></div>
+      </section>
+      <section class="feature-view" data-view="history" hidden><div class="feature-toolbar"><p>Recent tasks and provider runs available to this installation.</p><button type="button" data-load="history">Refresh history</button></div><div id="history-list" class="feature-list" aria-live="polite"></div></section>
+      <section class="feature-view" data-view="settings" hidden>
+        <div class="settings-grid">
+          <article><h2>Gemini</h2><p id="gemini-setting-status">Checking configuration…</p><button type="button" id="test-gemini-connection">Test saved Gemini key</button><button type="button" id="open-gemini-settings">Manage Gemini key</button></article>
+          <article><h2>TinyFish</h2><p id="tinyfish-setting-status">Not checked</p><button type="button" id="test-tinyfish-connection">Test with a free web search</button><button type="button" data-load="wallet">Check usage and wallet</button><pre id="wallet-status" hidden></pre></article>
+          <article><h2>Companion</h2><p>Choose your desktop companion and how it behaves.</p><label class="setting-check"><input type="checkbox" id="settings-miko-enabled"> Show companion</label><label class="setting-check"><input type="checkbox" id="settings-miko-top"> Keep on top</label><label class="setting-check"><input type="checkbox" id="companion-launch-at-login"> Start companion when I sign in</label><label class="setting-check"><input type="checkbox" id="companion-keep-running"> Keep companion when dashboard closes</label><label class="setting-check"><input type="checkbox" id="companion-status-bubbles"> Show status bubbles</label><label for="companion-animation-mode">Animation</label><select id="companion-animation-mode"><option value="full">Full motion</option><option value="subtle">Subtle motion</option></select><label for="companion-size">Size</label><input id="companion-size" type="range" min="65" max="140" step="5"><label class="setting-check"><input type="checkbox" id="companion-reduced-motion"> Reduce animation</label>
+            <div style="display:flex;gap:8px;margin:10px 0;">
+              <button type="button" id="btn-reset-pet-position">Reset pet position to default</button>
+              <button type="button" id="btn-toggle-companion-pause">Pause companion</button>
+            </div>
+            <fieldset><legend>Character</legend><div id="companion-gallery" class="companion-gallery">
+              <button type="button" data-pet="miko" aria-pressed="false"><img src="./pet/miko.png" alt="MIKO robotic fox"><span>MIKO · fox</span></button>
+              <button type="button" data-pet="nova" aria-pressed="false"><img src="./pet/assets/nova.svg" alt="NOVA space robot"><span>NOVA · robot</span></button>
+              <button type="button" data-pet="pixel" aria-pressed="false"><img src="./pet/assets/pixel.svg" alt="PIXEL robot cat"><span>PIXEL · cat</span></button>
+              <button type="button" data-pet="oliver" aria-pressed="false"><img src="./pet/assets/oliver.svg" alt="OLIVER robotic owl"><span>OLIVER · owl</span></button>
+              <button type="button" data-pet="pip" aria-pressed="false"><img src="./pet/assets/pip.svg" alt="PIP penguin"><span>PIP · penguin</span></button>
+            </div></fieldset>
+          </article>
+          <article><h2>Voice &amp; sound</h2><p>Voice is opt-in. Speech input uses the packaged Chromium speech recognition API and may use an external recognition service; system speech voices provide spoken output. MINDORA does not retain audio.</p><label class="setting-check"><input type="checkbox" id="companion-sounds"> Enable quiet companion sounds</label><label class="setting-check"><input type="checkbox" id="companion-voice"> Enable voice interactions</label><label for="companion-voice-language">Voice input language (BCP-47)</label><input id="companion-voice-language" maxlength="8" placeholder="Use system language"><label for="companion-voice-name">System voice</label><select id="companion-voice-name"><option value="">System default</option></select><label for="companion-voice-rate">Speaking rate</label><input id="companion-voice-rate" type="range" min="0.75" max="1.25" step="0.05"><label for="companion-voice-volume">Volume</label><input id="companion-voice-volume" type="range" min="0" max="1" step="0.05"><label class="setting-check"><input type="checkbox" id="companion-push-to-talk"> Push to talk (hold microphone)</label><label for="companion-microphone-device">Microphone</label><select id="companion-microphone-device"><option value="">System default</option></select><button type="button" id="companion-voice-test">Preview voice</button></article>
+          <article><h2>Local screen awareness</h2><p>Off by default. When enabled, MINDORA periodically captures the foreground app locally for OCR-based activity classification. Screenshots and recognized text are not saved or sent to Gemini/TinyFish. Private browsing and detected sensitive fields suppress suggestions.</p><label class="setting-check"><input type="checkbox" id="companion-screen-enabled"> Enable local screen awareness</label><label for="companion-observation-interval">Observation interval</label><select id="companion-observation-interval"><option value="30">30 seconds</option><option value="60">1 minute</option><option value="120">2 minutes</option></select><label for="companion-excluded-apps">Excluded app process names (comma separated)</label><input id="companion-excluded-apps" maxlength="800" placeholder="e.g. banking-app, password-manager"><p id="screen-awareness-status" aria-live="polite">Screen awareness is off.</p><button type="button" id="companion-screen-pause">Pause observation</button><button type="button" id="companion-screen-stop">Stop observation</button><p><strong>Last local classification:</strong> <span id="screen-activity-status">No observation yet.</span></p></article>
+          <article><h2>Proactive help</h2><p>Suggestions are tentative and only use local app/OCR signals. MINDORA never clicks or takes action without your request.</p><label class="setting-check"><input type="checkbox" id="companion-proactive"> Offer contextual suggestions</label><label class="setting-check"><input type="checkbox" id="companion-dnd"> Do not disturb</label><label for="companion-quiet-start">Quiet hours start</label><input id="companion-quiet-start" type="time"><label for="companion-quiet-end">Quiet hours end</label><input id="companion-quiet-end" type="time"><label for="companion-suggestion-cooldown">Suggestion cooldown (minutes)</label><input id="companion-suggestion-cooldown" type="number" min="5" max="240" step="5"></article>
+          <article><h2>Windows inactivity lock</h2><p>Optional Windows-only device lock. Disabled by default; at least five minutes of system inactivity and a visible cancel warning are required. Ten seconds of inactivity changes only the companion pose.</p><label class="setting-check"><input type="checkbox" id="companion-lock-enabled"> Enable Windows lock after inactivity</label><label for="companion-lock-after">Lock after (seconds; minimum 300)</label><input id="companion-lock-after" type="number" min="300" max="86400" step="60"><label for="companion-lock-warning">Warning period (seconds)</label><input id="companion-lock-warning" type="number" min="30" max="180" step="5"></article>
+          <article><h2>Desktop privacy</h2><p>Desktop observation stays inside the authorized desktop application. The web companion does not have screen capture access.</p></article>
+          <article><h2>Browser profiles</h2><p>Profiles are managed by TinyFish and remain on the trusted application side.</p><button type="button" data-load="profiles">Load browser profiles</button><pre id="profiles-status" hidden></pre></article>
+        </div>
+      </section>
+    </main>
+
+    <!-- Gemini API Key Setup & Management Modal -->
+    <div class="key-modal-backdrop" id="key-modal-backdrop" aria-hidden="true" style="display: none;">
+      <div class="key-modal-card" role="dialog" aria-modal="true" aria-labelledby="key-modal-title">
+        <header class="key-modal-header">
+          <div class="key-modal-title-row">
+            <div class="key-badge-icon" aria-hidden="true">
+              <svg width="18" height="18" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8">
+                <circle cx="5.5" cy="5.5" r="3.5"/>
+                <path d="M8 8l5.5 5.5M11.5 11.5L14 14M11.5 13.5l1.5-1.5"/>
+              </svg>
+            </div>
+            <h2 class="key-modal-title" id="key-modal-title">Connect your Gemini API Key</h2>
+          </div>
+          <button type="button" class="btn-close-modal" id="btn-close-key-modal" aria-label="Close setup modal">✕</button>
+        </header>
+
+        <div class="key-modal-body">
+          <p class="key-modal-desc">
+            MINDORA runs locally on your PC and needs your personal Google Gemini API key to observe software and guide you step-by-step.
+          </p>
+
+          <div class="key-status-banner" id="key-current-status-banner" style="display: none;">
+            <div class="key-status-banner-left">
+              <span class="status-indicator-dot active" id="key-status-dot"></span>
+              <span id="key-status-banner-text">Active Key: ••••••••3aBc</span>
+            </div>
+            <button type="button" class="btn-text-danger" id="btn-remove-key" title="Remove saved key">Remove key</button>
+          </div>
+
+          <div class="key-input-group">
+            <label for="input-api-key" class="field-label" id="label-api-key">Gemini API Key</label>
+            <div class="key-input-wrap">
+              <input 
+                type="password" 
+                id="input-api-key" 
+                class="key-input" 
+                placeholder="Paste your key: AIzaSy..." 
+                autocomplete="off" 
+                spellcheck="false"
+                aria-labelledby="label-api-key"
+              />
+              <button type="button" class="btn-toggle-eye" id="btn-toggle-key-visibility" title="Show or hide key" aria-label="Toggle key visibility">
+                👁️
+              </button>
+            </div>
+          </div>
+
+          <div class="key-feedback-box" id="key-feedback" role="status" aria-live="polite" style="display: none;"></div>
+
+          <div class="key-links-row">
+            <span class="key-hint">Need a key? </span>
+            <button type="button" class="link-btn" id="link-get-key">Get a free key from Google AI Studio ↗</button>
+          </div>
+        </div>
+
+        <footer class="key-modal-footer">
+          <button type="button" class="btn-sec" id="btn-test-key">Test connection</button>
+          <button type="button" class="btn-save-key" id="btn-save-key">Save key</button>
+        </footer>
+      </div>
+    </div>
+  </div>
+
+  <script src="./launch.js"></script>
+</body>
+</html>

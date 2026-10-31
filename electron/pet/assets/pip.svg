@@ -1,0 +1,76 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 220 220" fill="none">
+  <defs>
+    <linearGradient id="pip-navy" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#345163"/>
+      <stop offset="50%" stop-color="#1e3442"/>
+      <stop offset="100%" stop-color="#0f1d26"/>
+    </linearGradient>
+    <linearGradient id="pip-white" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#ffffff"/>
+      <stop offset="100%" stop-color="#d9e6ed"/>
+    </linearGradient>
+    <linearGradient id="pip-orange" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ffa726"/>
+      <stop offset="100%" stop-color="#f57c00"/>
+    </linearGradient>
+    <radialGradient id="pip-frost-gauge" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#e0f7fa"/>
+      <stop offset="60%" stop-color="#80deea"/>
+      <stop offset="100%" stop-color="#26c6da"/>
+    </radialGradient>
+  </defs>
+
+  <!-- Shadow -->
+  <ellipse cx="110" cy="204" rx="50" ry="8" fill="#1b2a33" opacity="0.18"/>
+
+  <!-- Magnetic Feet (Articulated Orange Duckfeet) -->
+  <g class="pet-feet">
+    <ellipse cx="88" cy="196" rx="14" ry="6" fill="url(#pip-orange)" stroke="#b26a00" stroke-width="2"/>
+    <ellipse cx="132" cy="196" rx="14" ry="6" fill="url(#pip-orange)" stroke="#b26a00" stroke-width="2"/>
+  </g>
+
+  <!-- Body Penguin Casing (Glossy Midnight-Navy Arctic Polymer) -->
+  <path d="M64 96c0-38 20-62 46-62s46 24 46 62v68c0 22-16 32-46 32s-46-10-46-32V96z" fill="url(#pip-navy)" stroke="#0f1d26" stroke-width="3.5"/>
+
+  <!-- Articulated Flippers -->
+  <g class="pet-flippers">
+    <!-- Left Flipper -->
+    <path class="pet-flipper-left" d="M64 116c-18 2-28 16-24 32 4 14 18 16 30 8" fill="url(#pip-navy)" stroke="#0f1d26" stroke-width="3.5" stroke-linejoin="round" style="transform-origin: 64px 118px;"/>
+    <!-- Right Flipper -->
+    <path class="pet-flipper-right" d="M156 116c18 2 28 16 24 32-4 14-18 16-30 8" fill="url(#pip-navy)" stroke="#0f1d26" stroke-width="3.5" stroke-linejoin="round" style="transform-origin: 156px 118px;"/>
+  </g>
+
+  <!-- Ice-White Belly Armor Plate -->
+  <path d="M76 122c0-18 14-30 34-30s34 12 34 30v38c0 16-14 24-34 24s-34-8-34-24v-38z" fill="url(#pip-white)" stroke="#78909c" stroke-width="2"/>
+
+  <!-- Frost-Blue Glowing Energy Gauge in Belly -->
+  <circle cx="110" cy="154" r="14" fill="#0f1d26" stroke="#78909c" stroke-width="2"/>
+  <circle class="pet-core" cx="110" cy="154" r="10" fill="url(#pip-frost-gauge)"/>
+  <circle cx="110" cy="154" r="4" fill="#ffffff" opacity="0.9"/>
+  <!-- Gauge Ticks -->
+  <path d="M110 141v2m9 4l-1.5 1.5m-15 0l1.5 1.5" stroke="#00acc1" stroke-width="1.8" stroke-linecap="round"/>
+
+  <!-- Head Sensor Crest Tuft (Arctic-Antenna) -->
+  <path d="M110 34v-12" stroke="#ffa726" stroke-width="3.5" stroke-linecap="round"/>
+  <circle cx="110" cy="20" r="5" fill="url(#pip-orange)"/>
+  <circle cx="110" cy="20" r="2" fill="#ffffff"/>
+
+  <!-- Cheerful Penguin Eyes -->
+  <g class="pet-eyes">
+    <ellipse cx="94" cy="84" rx="9" ry="12" fill="#ffffff" stroke="#0f1d26" stroke-width="2"/>
+    <ellipse cx="126" cy="84" rx="9" ry="12" fill="#ffffff" stroke="#0f1d26" stroke-width="2"/>
+    <!-- Pupils -->
+    <circle cx="95" cy="85" r="5.5" fill="#0f1d26"/>
+    <circle cx="127" cy="85" r="5.5" fill="#0f1d26"/>
+    <circle cx="97" cy="82" r="2" fill="#ffffff"/>
+    <circle cx="129" cy="82" r="2" fill="#ffffff"/>
+  </g>
+
+  <!-- Cheerful Mechanical Beak (Orange Diamond-Curved) -->
+  <polygon points="110,96 98,106 110,114 122,106" fill="url(#pip-orange)" stroke="#b26a00" stroke-width="2.2" stroke-linejoin="round"/>
+  <line x1="99" y1="106" x2="121" y2="106" stroke="#b26a00" stroke-width="1.5"/>
+
+  <!-- Rosy Cyber Cheeks (Soft Orange/Pink) -->
+  <ellipse cx="82" cy="98" rx="6" ry="3.5" fill="#ffb74d" opacity="0.6"/>
+  <ellipse cx="138" cy="98" rx="6" ry="3.5" fill="#ffb74d" opacity="0.6"/>
+</svg>

@@ -1,0 +1,57 @@
+# Environment & secrets
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+.api_budget.json
+
+# Dependencies
+node_modules/
+.pnpm-store/
+
+# Build & packaging outputs
+dist/
+build/
+out/
+release/
+release-build/
+*.exe
+*.dmg
+*.AppImage
+*.deb
+*.rpm
+
+# Screenshots, captures, and recordings
+captures/
+screenshots/
+recordings/
+*.mp4
+*.webm
+*.mov
+
+# Reference checkouts and temporary artifacts
+reference/
+lahacks2025/
+ghost-guide/
+scratch/
+tmp/
+
+# Logs & caches
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.eslintcache
+.turbo/
+.cache/
+*.traineddata
+*.traineddata.gz
+
+# OS and IDE files
+.DS_Store
+Thumbs.db
+.vscode/*
+!.vscode/settings.json
+!.vscode/extensions.json
+.idea/

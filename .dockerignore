@@ -1,0 +1,43 @@
+# Unstuck - Cloud Run & Docker Build Context Exclusions
+# Strictly excludes credentials, desktop builds, caches, and unnecessary files
+
+.env
+.env.*
+!.env.example
+*.key
+*.pem
+.api_budget.json
+
+# Local dependencies and caches
+node_modules/
+.cache/
+.pnpm-store/
+.git/
+.github/
+
+# Desktop electron build outputs and native binaries
+dist/electron/
+release/
+build/
+*.exe
+*.dmg
+*.AppImage
+
+# Captures, recordings, and review screenshots (allow single small example fixture)
+captures/
+!captures/calc-test.png
+screenshots/
+recordings/
+*.mp4
+*.webm
+*.mov
+
+# References, tests, and temporary scratch
+reference/
+lahacks2025/
+ghost-guide/
+scratch/
+tmp/
+tests/
+docs/
+*.md
